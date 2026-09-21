@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "itm_rusty_bandage",
+  "name": "生锈绷带",
+  "tier": "common",
+  "itemCategory": "stat",
+  "sellPrice": 6,
+  "perStack": [
+    {
+      "statId": "hpRegen",
+      "type": "flat",
+      "value": 2
+    }
+  ]
+}

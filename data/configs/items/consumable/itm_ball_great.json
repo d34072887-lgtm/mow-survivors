@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "itm_ball_great",
+  "name": "高级球",
+  "tier": "uncommon",
+  "itemCategory": "consumable",
+  "sellPrice": 20,
+  "consumableEffect": "capture_great"
+}

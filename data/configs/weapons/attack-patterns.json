@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "_comment": "首版 5 种攻击模式，见 docs/23-武器设计.md §2",
+  "patterns": {
+    "melee_arc": {
+      "name": "挥砍",
+      "behavior": "前方扇形近战",
+      "v1": true
+    },
+    "ranged_burst": {
+      "name": "连射",
+      "behavior": "高射速单目标",
+      "v1": true
+    },
+    "ranged_pierce": {
+      "name": "穿透",
+      "behavior": "直线多体",
+      "v1": true
+    },
+    "orbit": {
+      "name": "环绕",
+      "behavior": "周身旋转",
+      "v1": true
+    },
+    "aoe_ground": {
+      "name": "地波",
+      "behavior": "周期地面 AOE",
+      "v1": true
+    },
+    "ranged_single": {
+      "name": "单发追踪",
+      "behavior": "追踪最近目标",
+      "v1": false
+    },
+    "melee_thrust": {
+      "name": "刺击",
+      "behavior": "窄直线",
+      "v1": false
+    },
+    "summon_strike": {
+      "name": "唤宠",
+      "behavior": "按宠物战力比例",
+      "v1": false
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "itm_shovel_iron",
+  "name": "铁铲",
+  "tier": "common",
+  "itemCategory": "consumable",
+  "consumableEffect": "dig_layer",
+  "sellPrice": 8
+}

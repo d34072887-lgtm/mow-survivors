@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "itm_turbo_fan",
+  "name": "涡轮风扇",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 14,
+  "tags": [
+    "orbit"
+  ],
+  "perStack": [
+    {
+      "statId": "attackSpeed",
+      "type": "percent",
+      "value": 0.04
+    }
+  ]
+}

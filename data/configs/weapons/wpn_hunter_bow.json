@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "id": "wpn_hunter_bow",
+  "name": "猎手短弓",
+  "attackPattern": "ranged_burst",
+  "tags": ["ranged"],
+  "qualityTiers": {
+    "white": {
+      "baseStats": [
+        { "statId": "attack", "type": "flat", "value": 7 },
+        { "statId": "critRate", "type": "percent", "value": 0.03 }
+      ],
+      "shopWeight": 90
+    }
+  },
+  "flavor": "均衡远程"
+}

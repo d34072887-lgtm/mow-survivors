@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "id": "itm_steady_hand",
+  "name": "稳手",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "conditional": {
+    "condition": { "type": "attack_gte", "value": 60 },
+    "modifiers": [{ "statId": "enhanceSuccess", "type": "percent", "value": 0.02 }],
+    "perStackBonus": [{ "statId": "enhanceSuccess", "type": "percent", "value": 0.005 }]
+  },
+  "sellPrice": 20
+}

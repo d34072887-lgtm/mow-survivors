@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "itm_pickup_magnet",
+  "name": "吸金磁铁",
+  "tier": "common",
+  "itemCategory": "stat",
+  "perStack": [{ "statId": "pickupRange", "type": "percent", "value": 0.05 }],
+  "sellPrice": 6
+}

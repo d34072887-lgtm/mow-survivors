@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "itm_life_drain_coil",
+  "name": "漏电线圈",
+  "tier": "uncommon",
+  "itemCategory": "curse",
+  "sellPrice": 11,
+  "perStack": [
+    {
+      "statId": "lifeSteal",
+      "type": "percent",
+      "value": 0.02
+    },
+    {
+      "statId": "maxHp",
+      "type": "percent",
+      "value": -0.02
+    }
+  ]
+}

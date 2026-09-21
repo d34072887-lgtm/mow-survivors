@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "itm_orbit_gyro",
+  "name": "陀螺芯",
+  "tier": "common",
+  "itemCategory": "stat",
+  "sellPrice": 8,
+  "tags": [
+    "orbit"
+  ],
+  "perStack": [
+    {
+      "statId": "attackSpeed",
+      "type": "percent",
+      "value": 0.02
+    }
+  ]
+}

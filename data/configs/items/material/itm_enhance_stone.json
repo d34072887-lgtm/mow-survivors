@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "itm_enhance_stone",
+  "name": "强化石",
+  "tier": "common",
+  "itemCategory": "material",
+  "materialEffect": "enhance",
+  "sellPrice": 10
+}

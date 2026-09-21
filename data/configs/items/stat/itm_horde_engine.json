@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "id": "itm_horde_engine",
+  "name": "尸潮引擎",
+  "tier": "legendary",
+  "itemCategory": "stat",
+  "sellPrice": 54,
+  "tags": [
+    "aoe"
+  ],
+  "conditional": {
+    "condition": {
+      "type": "all",
+      "rules": [
+        {
+          "type": "weapon_tag_count",
+          "tag": "aoe",
+          "value": 3
+        },
+        {
+          "type": "aoeScale_gte",
+          "value": 0.3
+        }
+      ]
+    },
+    "modifiers": [
+      {
+        "statId": "aoeScale",
+        "type": "percent",
+        "value": 0.15
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "itm_rabbit_foot",
+  "name": "兔脚挂饰",
+  "tier": "common",
+  "itemCategory": "stat",
+  "sellPrice": 7,
+  "perStack": [
+    {
+      "statId": "dodge",
+      "type": "percent",
+      "value": 0.01
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "id": "itm_bouncer_patch",
+  "name": "保镖肩章",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 16,
+  "archetypeBridge": {
+    "targetArchetype": "tank",
+    "outsiderOnly": true,
+    "perStack": [
+      {
+        "statId": "maxHp",
+        "type": "percent",
+        "value": 0.05
+      },
+      {
+        "statId": "armor",
+        "type": "flat",
+        "value": 2
+      }
+    ]
+  }
+}

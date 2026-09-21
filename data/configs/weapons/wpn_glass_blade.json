@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "id": "wpn_glass_blade",
+  "name": "玻璃刃",
+  "attackPattern": "melee_arc",
+  "tags": ["melee"],
+  "qualityTiers": {
+    "white": {
+      "baseStats": [{ "statId": "attack", "type": "flat", "value": 14 }],
+      "shopWeight": 60
+    }
+  },
+  "gambleSideEffect": {
+    "auctionSnatchRate": 0.05
+  },
+  "flavor": "高攻赌狗向，拍卖被抢风险 +5%"
+}

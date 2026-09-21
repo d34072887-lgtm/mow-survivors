@@ -1,0 +1,318 @@
+{
+  "id": "hero_xiaokui",
+  "displayName": "小葵",
+  "view": "topdown",
+  "style": "pixel_inspired",
+  "sheet": {
+    "image": "walk-sheet.png",
+    "rawImage": "walk-sheet-raw.png",
+    "sliceMode": "blob_trim",
+    "columns": 4,
+    "rows": 4,
+    "size": {
+      "w": 1536,
+      "h": 1024
+    }
+  },
+  "animations": {
+    "walk_down": {
+      "frames": [
+        "walk_down_0",
+        "walk_down_1",
+        "walk_down_2",
+        "walk_down_3"
+      ],
+      "frameRate": 8,
+      "repeat": -1
+    },
+    "walk_left": {
+      "frames": [
+        "walk_left_0",
+        "walk_left_1",
+        "walk_left_2",
+        "walk_left_3"
+      ],
+      "frameRate": 8,
+      "repeat": -1
+    },
+    "walk_right": {
+      "frames": [
+        "walk_right_0",
+        "walk_right_1",
+        "walk_right_2",
+        "walk_right_3"
+      ],
+      "frameRate": 8,
+      "repeat": -1
+    },
+    "walk_up": {
+      "frames": [
+        "walk_up_0",
+        "walk_up_1",
+        "walk_up_2",
+        "walk_up_3"
+      ],
+      "frameRate": 8,
+      "repeat": -1
+    }
+  },
+  "frames": {
+    "walk_down_0": {
+      "frame": {
+        "x": 281,
+        "y": 14,
+        "w": 156,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 156,
+        "h": 242
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_down_1": {
+      "frame": {
+        "x": 562,
+        "y": 14,
+        "w": 160,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 160,
+        "h": 242
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_down_2": {
+      "frame": {
+        "x": 827,
+        "y": 14,
+        "w": 159,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 159,
+        "h": 242
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_down_3": {
+      "frame": {
+        "x": 1097,
+        "y": 14,
+        "w": 166,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 166,
+        "h": 242
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_left_0": {
+      "frame": {
+        "x": 289,
+        "y": 273,
+        "w": 148,
+        "h": 219
+      },
+      "sourceSize": {
+        "w": 148,
+        "h": 219
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_left_1": {
+      "frame": {
+        "x": 561,
+        "y": 273,
+        "w": 155,
+        "h": 219
+      },
+      "sourceSize": {
+        "w": 155,
+        "h": 219
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_left_2": {
+      "frame": {
+        "x": 831,
+        "y": 273,
+        "w": 155,
+        "h": 219
+      },
+      "sourceSize": {
+        "w": 155,
+        "h": 219
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_left_3": {
+      "frame": {
+        "x": 1105,
+        "y": 273,
+        "w": 154,
+        "h": 219
+      },
+      "sourceSize": {
+        "w": 154,
+        "h": 219
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_right_0": {
+      "frame": {
+        "x": 273,
+        "y": 518,
+        "w": 142,
+        "h": 217
+      },
+      "sourceSize": {
+        "w": 142,
+        "h": 217
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_right_1": {
+      "frame": {
+        "x": 551,
+        "y": 518,
+        "w": 143,
+        "h": 217
+      },
+      "sourceSize": {
+        "w": 143,
+        "h": 217
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_right_2": {
+      "frame": {
+        "x": 815,
+        "y": 518,
+        "w": 146,
+        "h": 217
+      },
+      "sourceSize": {
+        "w": 146,
+        "h": 217
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_right_3": {
+      "frame": {
+        "x": 1085,
+        "y": 518,
+        "w": 150,
+        "h": 217
+      },
+      "sourceSize": {
+        "w": 150,
+        "h": 217
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_up_0": {
+      "frame": {
+        "x": 280,
+        "y": 757,
+        "w": 148,
+        "h": 239
+      },
+      "sourceSize": {
+        "w": 148,
+        "h": 239
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_up_1": {
+      "frame": {
+        "x": 556,
+        "y": 757,
+        "w": 151,
+        "h": 239
+      },
+      "sourceSize": {
+        "w": 151,
+        "h": 239
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_up_2": {
+      "frame": {
+        "x": 827,
+        "y": 757,
+        "w": 157,
+        "h": 239
+      },
+      "sourceSize": {
+        "w": 157,
+        "h": 239
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    },
+    "walk_up_3": {
+      "frame": {
+        "x": 1100,
+        "y": 757,
+        "w": 159,
+        "h": 239
+      },
+      "sourceSize": {
+        "w": 159,
+        "h": 239
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.92
+      }
+    }
+  },
+  "notes": "AI sheet 未对齐网格，manifest 使用连通域 trim。Row0=down, row1=left, row2=right, row3=up（row1/2 按实图朝向校正）."
+}

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "itm_pierce_nail",
+  "name": "穿甲钉",
+  "tier": "common",
+  "itemCategory": "stat",
+  "sellPrice": 9,
+  "tags": [
+    "pierce"
+  ],
+  "perStack": [
+    {
+      "statId": "pierce",
+      "type": "flat",
+      "value": 1
+    }
+  ]
+}

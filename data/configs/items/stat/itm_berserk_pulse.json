@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "id": "itm_berserk_pulse",
+  "name": "狂怒起搏器",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 28,
+  "conditional": {
+    "condition": {
+      "type": "hp_percent_lte",
+      "value": 0.5
+    },
+    "modifiers": [
+      {
+        "statId": "attack",
+        "type": "percent",
+        "value": 0.1
+      }
+    ],
+    "perStackBonus": [
+      {
+        "statId": "attack",
+        "type": "percent",
+        "value": 0.02
+      }
+    ]
+  }
+}

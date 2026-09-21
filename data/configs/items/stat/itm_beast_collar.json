@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "id": "itm_beast_collar",
+  "name": "驯兽项圈",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 24,
+  "archetypeBridge": {
+    "targetArchetype": "capture",
+    "outsiderOnly": true,
+    "outsiderMultiplier": 1,
+    "nativeMultiplier": 0.5,
+    "perStack": [
+      {
+        "statId": "petDamage",
+        "type": "percent",
+        "value": 0.05
+      }
+    ],
+    "conditional": {
+      "condition": {
+        "type": "item_stack_gte",
+        "itemId": "itm_beast_collar",
+        "value": 3
+      },
+      "modifiers": [
+        {
+          "statId": "maxPetDeploy",
+          "type": "flat",
+          "value": 1
+        }
+      ]
+    }
+  }
+}

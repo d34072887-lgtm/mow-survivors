@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "id": "itm_glass_debt",
+  "name": "玻璃债",
+  "tier": "rare",
+  "itemCategory": "curse",
+  "perStack": [{ "statId": "attack", "type": "percent", "value": 0.06 }],
+  "gambleSideEffect": { "auctionSnatchRate": 0.02 },
+  "sellPrice": 18
+}

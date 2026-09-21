@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "itm_protect_stone",
+  "name": "保护石",
+  "tier": "uncommon",
+  "itemCategory": "material",
+  "materialEffect": "enhance_protect",
+  "sellPrice": 25
+}

@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "id": "itm_scroll_thief",
+  "name": "偷来的附魔卷",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 18,
+  "archetypeBridge": {
+    "targetArchetype": "enchant",
+    "outsiderOnly": true,
+    "perStack": [
+      {
+        "statId": "luck",
+        "type": "flat",
+        "value": 1
+      },
+      {
+        "statId": "enchantRareWeight",
+        "type": "percent",
+        "value": 0.03
+      }
+    ]
+  }
+}

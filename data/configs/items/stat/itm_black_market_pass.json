@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "itm_black_market_pass",
+  "name": "黑市通行证",
+  "tier": "rare",
+  "itemCategory": "venue",
+  "sellPrice": 20,
+  "perStack": [
+    {
+      "statId": "shopDiscount",
+      "type": "percent",
+      "value": 0.02
+    }
+  ],
+  "gambleSideEffect": {
+    "auctionSnatchRate": 0.03
+  }
+}

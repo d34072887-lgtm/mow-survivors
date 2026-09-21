@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "id": "itm_auction_mask",
+  "name": "拍卖面具",
+  "tier": "rare",
+  "itemCategory": "venue",
+  "tags": ["gamble"],
+  "perStack": [{ "statId": "auctionSnatchRate", "type": "percent", "value": -0.02 }],
+  "sellPrice": 22
+}

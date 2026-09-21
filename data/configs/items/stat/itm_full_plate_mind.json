@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "id": "itm_full_plate_mind",
+  "name": "满甲心态",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "conditional": {
+    "condition": { "type": "hp_percent_gte", "value": 0.90 },
+    "modifiers": [{ "statId": "damageReduction", "type": "percent", "value": 0.04 }],
+    "perStackBonus": [{ "statId": "damageReduction", "type": "percent", "value": 0.01 }]
+  },
+  "sellPrice": 22
+}

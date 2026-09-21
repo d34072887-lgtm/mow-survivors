@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "id": "itm_treasure_map_fragment",
+  "name": "藏宝图残页",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 16,
+  "tags": [
+    "build_dig"
+  ],
+  "perStack": [
+    {
+      "statId": "wealth",
+      "type": "flat",
+      "value": 2
+    },
+    {
+      "statId": "luck",
+      "type": "flat",
+      "value": 2
+    }
+  ]
+}

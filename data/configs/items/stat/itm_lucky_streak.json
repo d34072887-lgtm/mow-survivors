@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "itm_lucky_streak",
+  "name": "连运符",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 26,
+  "conditional": {
+    "condition": {
+      "type": "luck_gte",
+      "value": 50
+    },
+    "modifiers": [
+      {
+        "statId": "critRate",
+        "type": "percent",
+        "value": 0.05
+      }
+    ]
+  }
+}

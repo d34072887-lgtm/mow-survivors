@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "itm_crosshair_dot",
+  "name": "准星贴纸",
+  "tier": "common",
+  "itemCategory": "stat",
+  "sellPrice": 8,
+  "tags": [
+    "ranged"
+  ],
+  "perStack": [
+    {
+      "statId": "critRate",
+      "type": "percent",
+      "value": 0.02
+    }
+  ]
+}

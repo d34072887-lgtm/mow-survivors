@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>割草游戏 — Sprite 预览（纯 HTML + Canvas）</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+      background: #2a2418;
+      color: #f5e6c8;
+    }
+    h1 { font-size: 1.1rem; font-weight: 600; margin: 0; }
+    p { margin: 0; font-size: 0.85rem; opacity: 0.85; max-width: 640px; text-align: center; line-height: 1.5; }
+    canvas {
+      border: 2px solid #5c4a32;
+      border-radius: 8px;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      cursor: crosshair;
+      max-width: min(960px, 96vw);
+      height: auto;
+    }
+    code { background: #1a1610; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <h1>局内 Sprite 预览 — 纯 HTML + Canvas</h1>
+  <p>方向键移动小葵 · 史莱姆 idle 循环 · 无需 Phaser，<code>drawImage</code> 切 sheet 即可</p>
+  <canvas id="game" width="800" height="480"></canvas>
+  <p id="status">加载中…</p>
+
+  <script>
+    const ASSETS = {
+      hero: {
+        sheet: "../../assets/characters/hero_xiaokui/walk-sheet.png",
+        manifest: "../../assets/characters/hero_xiaokui/manifest.json",
+        scale: 0.55,
+      },
+      slime: {
+        sheet: "../../assets/monsters/slime/idle-sheet.png",
+        manifest: "../../assets/monsters/slime/manifest.json",
+        scale: 0.22,
+      },
+    };
+
+    const canvas = document.getElementById("game");
+    const ctx = canvas.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    const statusEl = document.getElementById("status");
+
+    const keys = { up: false, down: false, left: false, right: false };
+
+    class SpriteAnimator {
+      constructor(manifest, image, scale) {
+        this.manifest = manifest;
+        this.image = image;
+        this.scale = scale;
+        this.anim = "walk_down";
+        this.frameIndex = 0;
+        this.elapsed = 0;
+      }
+
+      get currentFrameName() {
+        const a = this.manifest.animations[this.anim];
+        return a.frames[this.frameIndex % a.frames.length];
+      }
+
+      get frameRect() {
+        return this.manifest.frames[this.currentFrameName].frame;
+      }
+
+      get pivot() {
+        return this.manifest.frames[this.currentFrameName].pivot;
+      }
+
+      update(dt) {
+        const a = this.manifest.animations[this.anim];
+        const frameDuration = 1 / a.frameRate;
+        this.elapsed += dt;
+        while (this.elapsed >= frameDuration) {
+          this.elapsed -= frameDuration;
+          this.frameIndex = (this.frameIndex + 1) % a.frames.length;
+        }
+      }
+
+      draw(ctx, x, y, flipX = false) {
+        const f = this.frameRect;
+        const p = this.pivot;
+        const dw = Math.round(f.w * this.scale);
+        const dh = Math.round(f.h * this.scale);
+        if (flipX) {
+          ctx.save();
+          ctx.translate(x, y);
+          ctx.scale(-1, 1);
+          ctx.drawImage(this.image, f.x, f.y, f.w, f.h, -dw * p.x, -dh * p.y, dw, dh);
+          ctx.restore();
+        } else {
+          ctx.drawImage(this.image, f.x, f.y, f.w, f.h, x - dw * p.x, y - dh * p.y, dw, dh);
+        }
+      }
+    }
+
+    async function loadManifest(url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("无法加载 " + url);
+      return res.json();
+    }
+
+    function loadImage(url) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = () => reject(new Error("无法加载图片 " + url));
+        img.src = url;
+      });
+    }
+
+    let hero, slime;
+    let heroFlipX = false;
+    const heroPos = { x: 400, y: 260 };
+    const slimePos = { x: 560, y: 300 };
+    const speed = 140;
+
+    function pickHeroAnim() {
+      if (keys.up && !keys.down) return { anim: "walk_up", flip: false };
+      if (keys.down && !keys.up) return { anim: "walk_down", flip: false };
+      if (keys.left && !keys.right) return { anim: "walk_right", flip: true };
+      if (keys.right && !keys.left) return { anim: "walk_right", flip: false };
+      return { anim: hero.anim.startsWith("walk_") ? hero.anim : "walk_down", flip: heroFlipX };
+    }
+
+    function loop(ts) {
+      if (!hero || !slime) return;
+      const dt = Math.min((ts - (loop.last || ts)) / 1000, 0.05);
+      loop.last = ts;
+
+      let moving = false;
+      if (keys.up) { heroPos.y -= speed * dt; moving = true; }
+      if (keys.down) { heroPos.y += speed * dt; moving = true; }
+      if (keys.left) { heroPos.x -= speed * dt; moving = true; }
+      if (keys.right) { heroPos.x += speed * dt; moving = true; }
+
+      heroPos.x = Math.max(40, Math.min(canvas.width - 40, heroPos.x));
+      heroPos.y = Math.max(40, Math.min(canvas.height - 40, heroPos.y));
+
+      if (moving) {
+        const f = pickHeroAnim();
+        hero.anim = f.anim;
+        if (keys.left || keys.right) heroFlipX = f.flip;
+      }
+      hero.update(moving ? dt : dt * 0.35);
+      slime.update(dt);
+
+      ctx.fillStyle = "#7cb356";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(90, 130, 60, 0.35)";
+      for (let gy = 0; gy < canvas.height; gy += 32) {
+        for (let gx = 0; gx < canvas.width; gx += 32) {
+          if ((gx + gy) % 64 === 0) ctx.fillRect(gx, gy, 32, 32);
+        }
+      }
+
+      slime.draw(ctx, slimePos.x, slimePos.y);
+      hero.draw(ctx, heroPos.x, heroPos.y, heroFlipX);
+
+      requestAnimationFrame(loop);
+    }
+
+    window.addEventListener("keydown", (e) => {
+      const map = { ArrowUp: "up", ArrowDown: "down", ArrowLeft: "left", ArrowRight: "right" };
+      if (map[e.key]) { keys[map[e.key]] = true; e.preventDefault(); }
+    });
+    window.addEventListener("keyup", (e) => {
+      const map = { ArrowUp: "up", ArrowDown: "down", ArrowLeft: "left", ArrowRight: "right" };
+      if (map[e.key]) keys[map[e.key]] = false;
+    });
+
+    (async () => {
+      try {
+        const [heroManifest, slimeManifest, heroImg, slimeImg] = await Promise.all([
+          loadManifest(ASSETS.hero.manifest),
+          loadManifest(ASSETS.slime.manifest),
+          loadImage(ASSETS.hero.sheet),
+          loadImage(ASSETS.slime.sheet),
+        ]);
+        hero = new SpriteAnimator(heroManifest, heroImg, ASSETS.hero.scale);
+        slime = new SpriteAnimator(slimeManifest, slimeImg, ASSETS.slime.scale);
+        slime.anim = "idle";
+        statusEl.textContent = "已加载 · 用方向键移动";
+        requestAnimationFrame(loop);
+      } catch (err) {
+        statusEl.textContent =
+          err.message +
+          " — 若直接双击打开 HTML，请用本地静态服务（如 npx serve）打开项目目录。";
+        console.error(err);
+      }
+    })();
+  </script>
+</body>
+</html>

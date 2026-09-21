@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "itm_melee_weight",
+  "name": "握把配重",
+  "tier": "common",
+  "itemCategory": "stat",
+  "sellPrice": 7,
+  "tags": [
+    "melee"
+  ],
+  "perStack": [
+    {
+      "statId": "attack",
+      "type": "flat",
+      "value": 1
+    }
+  ]
+}

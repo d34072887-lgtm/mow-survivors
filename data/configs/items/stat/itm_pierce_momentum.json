@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "itm_pierce_momentum",
+  "name": "贯穿势能",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 25,
+  "tags": [
+    "pierce"
+  ],
+  "conditional": {
+    "condition": {
+      "type": "weapon_tag_count",
+      "tag": "pierce",
+      "value": 3
+    },
+    "modifiers": [
+      {
+        "statId": "pierce",
+        "type": "flat",
+        "value": 1
+      }
+    ]
+  }
+}

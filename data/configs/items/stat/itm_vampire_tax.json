@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "itm_vampire_tax",
+  "name": "吸血鬼税单",
+  "tier": "rare",
+  "itemCategory": "curse",
+  "sellPrice": 17,
+  "perStack": [
+    {
+      "statId": "lifeSteal",
+      "type": "percent",
+      "value": 0.03
+    },
+    {
+      "statId": "maxHp",
+      "type": "percent",
+      "value": -0.03
+    }
+  ]
+}

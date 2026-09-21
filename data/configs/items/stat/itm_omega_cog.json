@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "id": "itm_omega_cog",
+  "name": "欧米伽齿轮",
+  "tier": "legendary",
+  "itemCategory": "stat",
+  "sellPrice": 55,
+  "conditional": {
+    "condition": {
+      "type": "weapon_pattern_unique_gte",
+      "value": 6
+    },
+    "modifiers": [
+      {
+        "statId": "attackSpeed",
+        "type": "percent",
+        "value": 0.15
+      },
+      {
+        "statId": "critDamage",
+        "type": "percent",
+        "value": 0.2
+      }
+    ]
+  }
+}

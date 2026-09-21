@@ -1,0 +1,172 @@
+{
+  "version": 2,
+  "_comment": "分池避免整页石头；legendary 权重读 stat-linkage shop_legendary",
+  "slotsPerRound": { "min": 4, "max": 6 },
+  "pools": {
+    "stat_common": {
+      "weight": 38,
+      "entries": [
+        { "itemId": "itm_coffee", "weight": 100 },
+        { "itemId": "itm_duct_tape", "weight": 100 },
+        { "itemId": "itm_pickup_magnet", "weight": 95 },
+        { "itemId": "itm_rusty_bandage", "weight": 90 },
+        { "itemId": "itm_worn_boots", "weight": 95 },
+        { "itemId": "itm_spare_change", "weight": 90 },
+        { "itemId": "itm_sharpener", "weight": 90 },
+        { "itemId": "itm_vitamin_c", "weight": 90 },
+        { "itemId": "itm_scrap_plate", "weight": 85 },
+        { "itemId": "itm_rabbit_foot", "weight": 85 },
+        { "itemId": "itm_pepper_shell", "weight": 88 },
+        { "itemId": "itm_orbit_gyro", "weight": 85 },
+        { "itemId": "itm_pierce_nail", "weight": 82 },
+        { "itemId": "itm_aoe_resonator", "weight": 80 },
+        { "itemId": "itm_crosshair_dot", "weight": 85 },
+        { "itemId": "itm_melee_weight", "weight": 88 }
+      ]
+    },
+    "stat_uncommon": {
+      "weight": 28,
+      "entries": [
+        { "itemId": "itm_iron_meal", "weight": 90 },
+        { "itemId": "itm_leech_tooth", "weight": 85 },
+        { "itemId": "itm_scope_lens", "weight": 85 },
+        { "itemId": "itm_lucky_charm", "weight": 80 },
+        { "itemId": "itm_coin_purse", "weight": 80 },
+        { "itemId": "itm_hot_sauce", "weight": 88 },
+        { "itemId": "itm_mint_leaf", "weight": 82 },
+        { "itemId": "itm_broken_mirror", "weight": 80 },
+        { "itemId": "itm_turbo_fan", "weight": 78 },
+        { "itemId": "itm_bounty_stamp", "weight": 85 },
+        { "itemId": "itm_steady_pulse", "weight": 82 },
+        { "itemId": "itm_crit_whetstone", "weight": 75 },
+        { "itemId": "itm_quick_reflex", "weight": 80 },
+        { "itemId": "itm_range_extender", "weight": 82 },
+        { "itemId": "itm_grease_stain", "weight": 70 },
+        { "itemId": "itm_thorn_patch", "weight": 72 },
+        { "itemId": "itm_heavy_coin", "weight": 75 },
+        { "itemId": "itm_iron_will", "weight": 78 },
+        { "itemId": "itm_beast_pact", "weight": 55 },
+        { "itemId": "itm_digger_spur", "weight": 55 },
+        { "itemId": "itm_feral_totem", "weight": 50 },
+        { "itemId": "itm_treasure_map_fragment", "weight": 50 },
+        { "itemId": "itm_ball_artisan", "weight": 45 },
+        { "itemId": "itm_shovel_grip", "weight": 45 },
+        { "itemId": "itm_casino_charm", "weight": 60 },
+        { "itemId": "itm_merchant_ledger", "weight": 65 },
+        { "itemId": "itm_refresh_coupon", "weight": 70 },
+        { "itemId": "itm_salvage_permit", "weight": 68 },
+        { "itemId": "itm_life_drain_coil", "weight": 55 }
+      ]
+    },
+    "stat_rare": {
+      "weight": 18,
+      "entries": [
+        { "itemId": "itm_heavy_gait", "weight": 70 },
+        { "itemId": "itm_blood_rush", "weight": 75 },
+        { "itemId": "itm_steady_hand", "weight": 65 },
+        { "itemId": "itm_full_plate_mind", "weight": 70 },
+        { "itemId": "itm_glass_debt", "weight": 55 },
+        { "itemId": "itm_vip_card", "weight": 50 },
+        { "itemId": "itm_auction_mask", "weight": 50 },
+        { "itemId": "itm_last_stand", "weight": 68 },
+        { "itemId": "itm_berserk_pulse", "weight": 72 },
+        { "itemId": "itm_greedy_eyes", "weight": 65 },
+        { "itemId": "itm_lucky_streak", "weight": 62 },
+        { "itemId": "itm_pierce_momentum", "weight": 60 },
+        { "itemId": "itm_orbit_storm", "weight": 58 },
+        { "itemId": "itm_melee_bulwark", "weight": 62 },
+        { "itemId": "itm_enhance_gambit", "weight": 55 },
+        { "itemId": "itm_debt_note", "weight": 52 },
+        { "itemId": "itm_phantom_step", "weight": 60 },
+        { "itemId": "itm_iron_lungs", "weight": 65 },
+        { "itemId": "itm_crit_script", "weight": 58 },
+        { "itemId": "itm_empty_wallet", "weight": 50 },
+        { "itemId": "itm_siege_plate", "weight": 62 },
+        { "itemId": "itm_regen_surge", "weight": 58 },
+        { "itemId": "itm_hoarder_glee", "weight": 55 },
+        { "itemId": "itm_fresh_blood", "weight": 56 },
+        { "itemId": "itm_night_owl", "weight": 54 },
+        { "itemId": "itm_enhance_insurance", "weight": 48 },
+        { "itemId": "itm_black_market_pass", "weight": 45 },
+        { "itemId": "itm_whisper_dice", "weight": 50 }
+      ]
+    },
+    "stat_legendary": {
+      "weight": 6,
+      "entries": [
+        { "itemId": "itm_titan_heart", "weight": 60 },
+        { "itemId": "itm_gambler_crown", "weight": 55 },
+        { "itemId": "itm_burst_core", "weight": 50 },
+        { "itemId": "itm_enchanter_sigil", "weight": 50 },
+        { "itemId": "itm_omega_cog", "weight": 35 },
+        { "itemId": "itm_blood_covenant", "weight": 42 },
+        { "itemId": "itm_auction_throne", "weight": 38 },
+        { "itemId": "itm_casino_ace", "weight": 40 },
+        { "itemId": "itm_pierce_dimension", "weight": 45 },
+        { "itemId": "itm_tank_fortress", "weight": 32 },
+        { "itemId": "itm_glass_cannon_suite", "weight": 40 },
+        { "itemId": "itm_enchanters_grimoire", "weight": 42 },
+        { "itemId": "itm_mirror_twin", "weight": 38 },
+        { "itemId": "itm_chaos_orb", "weight": 35 },
+        { "itemId": "itm_six_shooter_oath", "weight": 44 },
+        { "itemId": "itm_horde_engine", "weight": 40 },
+        { "itemId": "itm_pet_whisper", "weight": 36 },
+        { "itemId": "itm_midas_curse", "weight": 38 }
+      ],
+      "linkageKey": "shop_legendary"
+    },
+    "curse": {
+      "weight": 8,
+      "entries": [
+        { "itemId": "itm_cursed_gold", "weight": 80 },
+        { "itemId": "itm_vampire_tax", "weight": 75 },
+        { "itemId": "itm_jinx_bracelet", "weight": 70 },
+        { "itemId": "itm_heavy_sin", "weight": 65 },
+        { "itemId": "itm_all_in_ticket", "weight": 25 },
+        { "itemId": "itm_glass_debt", "weight": 60 },
+        { "itemId": "itm_debt_note", "weight": 55 },
+        { "itemId": "itm_midas_curse", "weight": 40 }
+      ]
+    },
+    "material": {
+      "weight": 18,
+      "entries": [
+        { "itemId": "itm_enhance_stone", "weight": 100 },
+        { "itemId": "itm_protect_stone", "weight": 40 },
+        { "itemId": "itm_enchant_stone", "weight": 35 },
+        { "itemId": "itm_protect_talisman", "weight": 20 }
+      ]
+    },
+    "consumable": {
+      "weight": 12,
+      "entries": [
+        { "itemId": "itm_ball_normal", "weight": 100 },
+        { "itemId": "itm_ball_great", "weight": 35 },
+        { "itemId": "itm_shovel_iron", "weight": 80 },
+        { "itemId": "itm_shovel_gold", "weight": 15 },
+        { "itemId": "itm_ball_master", "weight": 5 }
+      ]
+    },
+    "archetype_bridge": {
+      "weight": 14,
+      "_comment": "跨流派偷师；outsiderOnly 道具",
+      "entries": [
+        { "itemId": "itm_poacher_kit", "weight": 85 },
+        { "itemId": "itm_weekend_miner", "weight": 85 },
+        { "itemId": "itm_bouncer_patch", "weight": 88 },
+        { "itemId": "itm_rage_serum", "weight": 85 },
+        { "itemId": "itm_fake_chips", "weight": 80 },
+        { "itemId": "itm_scroll_thief", "weight": 75 },
+        { "itemId": "itm_smith_apron", "weight": 75 },
+        { "itemId": "itm_part_timer_ball", "weight": 82 },
+        { "itemId": "itm_beast_collar", "weight": 55 },
+        { "itemId": "itm_prospector_lens", "weight": 60 },
+        { "itemId": "itm_iron_gut_pills", "weight": 62 },
+        { "itemId": "itm_mercenary_contract", "weight": 65 },
+        { "itemId": "itm_symbiosis_seed", "weight": 60 },
+        { "itemId": "itm_dealer_trick", "weight": 50 },
+        { "itemId": "itm_offduty_shovel", "weight": 45 }
+      ]
+    }
+  }
+}

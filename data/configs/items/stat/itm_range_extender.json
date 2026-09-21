@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "itm_range_extender",
+  "name": "伸缩导轨",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 12,
+  "tags": [
+    "ranged"
+  ],
+  "perStack": [
+    {
+      "statId": "range",
+      "type": "percent",
+      "value": 0.04
+    }
+  ]
+}

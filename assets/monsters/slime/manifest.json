@@ -1,0 +1,96 @@
+{
+  "id": "slime",
+  "displayName": "史莱姆",
+  "view": "topdown",
+  "style": "pixel_inspired",
+  "sheet": {
+    "image": "idle-sheet.png",
+    "rawImage": "idle-sheet-raw.png",
+    "sliceMode": "blob_trim",
+    "columns": 2,
+    "rows": 2,
+    "size": {
+      "w": 1536,
+      "h": 1024
+    }
+  },
+  "animations": {
+    "idle": {
+      "frames": [
+        "idle_0",
+        "idle_1",
+        "idle_2",
+        "idle_3"
+      ],
+      "frameRate": 6,
+      "repeat": -1
+    }
+  },
+  "frames": {
+    "idle_0": {
+      "frame": {
+        "x": 225,
+        "y": 173,
+        "w": 415,
+        "h": 236
+      },
+      "sourceSize": {
+        "w": 415,
+        "h": 236
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.88
+      }
+    },
+    "idle_1": {
+      "frame": {
+        "x": 901,
+        "y": 110,
+        "w": 383,
+        "h": 299
+      },
+      "sourceSize": {
+        "w": 383,
+        "h": 299
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.88
+      }
+    },
+    "idle_2": {
+      "frame": {
+        "x": 225,
+        "y": 657,
+        "w": 415,
+        "h": 242
+      },
+      "sourceSize": {
+        "w": 415,
+        "h": 242
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.88
+      }
+    },
+    "idle_3": {
+      "frame": {
+        "x": 901,
+        "y": 600,
+        "w": 383,
+        "h": 299
+      },
+      "sourceSize": {
+        "w": 383,
+        "h": 299
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.88
+      }
+    }
+  },
+  "notes": "2x2 idle via blob trim. Play order idle_0→idle_3."
+}

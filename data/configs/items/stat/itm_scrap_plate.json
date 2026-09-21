@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "itm_scrap_plate",
+  "name": "废料护板",
+  "tier": "common",
+  "itemCategory": "stat",
+  "sellPrice": 8,
+  "tags": [
+    "tank"
+  ],
+  "perStack": [
+    {
+      "statId": "armor",
+      "type": "flat",
+      "value": 2
+    }
+  ]
+}

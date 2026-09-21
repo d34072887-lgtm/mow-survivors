@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "id": "itm_scope_lens",
+  "name": "瞄准镜片",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "tags": ["ranged"],
+  "perStack": [{ "statId": "range", "type": "percent", "value": 0.03 }],
+  "sellPrice": 12
+}

@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "id": "itm_mirror_twin",
+  "name": "镜影双子",
+  "tier": "legendary",
+  "itemCategory": "stat",
+  "sellPrice": 51,
+  "conditional": {
+    "condition": {
+      "type": "all",
+      "rules": [
+        {
+          "type": "dodge_gte",
+          "value": 0.25
+        },
+        {
+          "type": "critRate_gte",
+          "value": 0.2
+        }
+      ]
+    },
+    "modifiers": [
+      {
+        "statId": "attack",
+        "type": "percent",
+        "value": 0.15
+      }
+    ]
+  }
+}

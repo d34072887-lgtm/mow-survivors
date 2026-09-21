@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "itm_grease_stain",
+  "name": "机油污渍",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 10,
+  "perStack": [
+    {
+      "statId": "moveSpeed",
+      "type": "percent",
+      "value": 0.03
+    },
+    {
+      "statId": "dodge",
+      "type": "percent",
+      "value": -0.01
+    }
+  ]
+}

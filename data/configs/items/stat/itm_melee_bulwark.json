@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "itm_melee_bulwark",
+  "name": "近战壁垒",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 24,
+  "tags": [
+    "melee"
+  ],
+  "conditional": {
+    "condition": {
+      "type": "weapon_tag_count",
+      "tag": "melee",
+      "value": 4
+    },
+    "modifiers": [
+      {
+        "statId": "armor",
+        "type": "flat",
+        "value": 3
+      }
+    ]
+  }
+}

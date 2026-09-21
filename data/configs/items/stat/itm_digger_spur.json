@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "id": "itm_digger_spur",
+  "name": "掘进马刺",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "tags": ["build_dig"],
+  "perStack": [
+    { "statId": "wealth", "type": "flat", "value": 2 },
+    { "statId": "luck", "type": "flat", "value": 1 }
+  ],
+  "sellPrice": 16
+}

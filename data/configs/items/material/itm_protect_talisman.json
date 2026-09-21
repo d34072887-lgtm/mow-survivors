@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "itm_protect_talisman",
+  "name": "附魔保护符",
+  "tier": "rare",
+  "itemCategory": "material",
+  "materialEffect": "enchant_protect",
+  "sellPrice": 40
+}

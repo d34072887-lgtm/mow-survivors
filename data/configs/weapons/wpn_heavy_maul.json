@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "id": "wpn_heavy_maul",
+  "name": "重锤",
+  "attackPattern": "melee_arc",
+  "tags": ["melee", "tank"],
+  "qualityTiers": {
+    "white": {
+      "baseStats": [
+        { "statId": "attack", "type": "flat", "value": 12 },
+        { "statId": "range", "type": "percent", "value": -0.05 }
+      ],
+      "shopWeight": 70
+    }
+  },
+  "flavor": "高白值低射程"
+}

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "itm_enhance_gambit",
+  "name": "强化赌局",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 22,
+  "conditional": {
+    "condition": {
+      "type": "enhance_level_sum_gte",
+      "value": 18
+    },
+    "modifiers": [
+      {
+        "statId": "enhanceSuccess",
+        "type": "percent",
+        "value": 0.03
+      }
+    ]
+  }
+}

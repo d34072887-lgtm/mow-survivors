@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "id": "itm_coffee",
+  "name": "过浓咖啡",
+  "tier": "common",
+  "itemCategory": "stat",
+  "tags": ["burst"],
+  "perStack": [{ "statId": "attackSpeed", "type": "percent", "value": 0.03 }],
+  "sellPrice": 8
+}

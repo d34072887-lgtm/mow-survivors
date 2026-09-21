@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "id": "itm_last_stand",
+  "name": "绝境徽章",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 26,
+  "conditional": {
+    "condition": {
+      "type": "hp_percent_lte",
+      "value": 0.15
+    },
+    "modifiers": [
+      {
+        "statId": "damageReduction",
+        "type": "percent",
+        "value": 0.08
+      }
+    ],
+    "perStackBonus": [
+      {
+        "statId": "damageReduction",
+        "type": "percent",
+        "value": 0.02
+      }
+    ]
+  }
+}

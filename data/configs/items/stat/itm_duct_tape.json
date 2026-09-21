@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "id": "itm_duct_tape",
+  "name": "强力胶带",
+  "tier": "common",
+  "itemCategory": "stat",
+  "tags": ["tank", "melee"],
+  "perStack": [{ "statId": "armor", "type": "flat", "value": 1 }],
+  "sellPrice": 8
+}

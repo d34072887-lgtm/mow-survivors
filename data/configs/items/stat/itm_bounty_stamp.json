@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "itm_bounty_stamp",
+  "name": "悬赏邮戳",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 13,
+  "perStack": [
+    {
+      "statId": "goldGain",
+      "type": "percent",
+      "value": 0.04
+    },
+    {
+      "statId": "attack",
+      "type": "percent",
+      "value": 0.01
+    }
+  ]
+}

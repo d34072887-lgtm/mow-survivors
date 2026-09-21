@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "itm_titan_heart",
+  "name": "泰坦之心",
+  "tier": "legendary",
+  "itemCategory": "stat",
+  "tags": ["tank"],
+  "perStack": [{ "statId": "maxHp", "type": "flat", "value": 15 }],
+  "conditional": {
+    "condition": { "type": "hp_max_gte", "value": 800 },
+    "modifiers": [{ "statId": "damageReduction", "type": "percent", "value": 0.03 }],
+    "perStackBonus": [{ "statId": "damageReduction", "type": "percent", "value": 0.01 }]
+  },
+  "sellPrice": 45
+}

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "itm_enchant_stone",
+  "name": "附魔石",
+  "tier": "uncommon",
+  "itemCategory": "material",
+  "materialEffect": "enchant",
+  "sellPrice": 30
+}

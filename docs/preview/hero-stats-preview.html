@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>英雄属性界面预览 — StatSystem v1.4</title>
+  <style>
+    :root {
+      --bg:#0f1117; --panel:#1a1d28; --panel2:#222636; --border:#2e3348;
+      --text:#e8eaf0; --muted:#8b90a8; --green:#5dd39e; --red:#ff6b6b;
+      --gold:#f4c542; --purple:#b794f6; --cyan:#67e8f9; --orange:#fb923c;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+    header{padding:20px 24px;border-bottom:1px solid var(--border);background:#161925}
+    header h1{font-size:1.3rem}
+    header p{color:var(--muted);font-size:.88rem;margin-top:6px;max-width:900px}
+    .layers{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;font-size:.78rem}
+    .layer{padding:4px 10px;border-radius:6px;border:1px solid var(--border)}
+    .layer.l1{border-color:var(--gold);color:var(--gold)}
+    .layer.l2{border-color:var(--muted);color:var(--muted)}
+    .layer.l3{border-color:var(--cyan);color:var(--cyan)}
+    .layout{display:grid;grid-template-columns:380px 1fr;gap:20px;padding:20px 24px;max-width:1280px;margin:0 auto}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    .card-head{padding:12px 16px;background:var(--panel2);border-bottom:1px solid var(--border);font-weight:600;font-size:.92rem}
+    .card-head small{font-weight:400;color:var(--muted);margin-left:8px}
+    .hero-panel{padding:14px;max-height:85vh;overflow-y:auto}
+    .hero-top{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+    .avatar{width:64px;height:64px;border-radius:10px;background:#2a2d40;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+    .section{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:12px 0 6px;padding-left:2px}
+    .section.l1{color:var(--gold)}
+    .stat-row{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;margin:3px 0;border-radius:7px;background:var(--panel2);cursor:pointer;border-left:3px solid transparent}
+    .stat-row:hover,.stat-row.on{background:#2a3048;border-left-color:var(--cyan)}
+    .stat-row.dim{opacity:.75;border-left-color:#444}
+    .stat-name{font-size:.86rem}.stat-id{font-size:.68rem;color:var(--muted);font-family:Consolas,monospace}
+    .stat-val{font-weight:700;font-variant-numeric:tabular-nums;font-size:.88rem}
+    .v-green{color:var(--green)}.v-purple{color:var(--purple)}.v-gold{color:var(--gold)}.v-red{color:var(--red)}.v-cyan{color:var(--cyan)}
+    .delta{font-size:.72rem;color:var(--muted);font-weight:400}
+    .wallet{margin-top:12px;padding:10px;border-radius:8px;background:#1a2418;border:1px dashed #3d5c30;font-size:.82rem}
+    .toggle{width:100%;margin-top:10px;padding:8px;background:var(--panel2);border:1px solid var(--border);border-radius:8px;color:var(--cyan);cursor:pointer;font-size:.82rem}
+    .build-panel{display:none;margin-top:6px}
+    .build-panel.open{display:block}
+    .detail{padding:16px 18px;min-height:400px}
+    .detail h2{font-size:1.1rem;margin-bottom:4px}
+    .code{font-family:Consolas,monospace;color:var(--cyan);font-size:.82rem;margin-bottom:10px}
+    .pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+    .pill{font-size:.72rem;padding:2px 8px;border-radius:999px;border:1px solid var(--border)}
+    .pill.l1{border-color:#5a4a20;color:var(--gold)}
+    .pill.l3{border-color:#2d4a5a;color:var(--cyan)}
+    .block{margin-bottom:12px;padding:11px;background:var(--panel2);border-radius:8px;font-size:.88rem}
+    .block h3{font-size:.75rem;color:var(--muted);margin-bottom:6px;text-transform:uppercase}
+    .block ul{padding-left:18px}.block li{margin:3px 0}
+    .compare{margin:20px 24px 40px;max-width:1280px}
+    .compare table{width:100%;border-collapse:collapse;font-size:.8rem}
+    .compare th,.compare td{padding:8px 10px;border-bottom:1px solid var(--border);text-align:left}
+    .compare th{color:var(--muted);background:var(--panel2)}
+  </style>
+</head>
+<body>
+<header>
+  <h1>英雄属性界面预览 · v1.4</h1>
+  <p>① 主面板 <strong>18 条 · 养成无上限</strong>。<strong>maxHp ≥ 1 永不为负</strong>。联动 = 2~N 通道软饱和（plateau），<strong>不单靠 attack</strong> — 坦克 maxHp 线、输出 attack 线并列。</p>
+  <div class="layers">
+    <span class="layer l1">① 主面板 — 局内 Character Sheet（下面大列表）</span>
+    <span class="layer l2">② baseStats — 选英雄时开局偏科（只填①的子集）</span>
+    <span class="layer l3">③ Build — 道具/附魔/宠物（折叠区，不是主面板）</span>
+  </div>
+</header>
+
+<div class="layout">
+  <div class="card">
+    <div class="card-head">① 局内 · 英雄属性面板 <small>点击看影响</small></div>
+    <div class="hero-panel" id="panel"></div>
+  </div>
+  <div class="card">
+    <div class="card-head">属性详情</div>
+    <div class="detail" id="detail"><p style="color:var(--muted)">← 点击左侧属性</p></div>
+  </div>
+</div>
+
+<div class="compare card" style="margin-left:auto;margin-right:auto;padding:0">
+  <div class="card-head">多属性联动速查（luck 不包打天下）</div>
+  <table>
+    <thead><tr><th>系统</th><th>主责</th><th>联动 stat</th></tr></thead>
+    <tbody id="linkage-body"></tbody>
+  </table>
+</div>
+
+<script>
+const PRIMARY = [
+  { g:"生存", stats:[
+    { id:"maxHp", n:"最大生命", v:620, d:0 },
+    { id:"hpRegen", n:"生命回复", v:"2.4", u:"/秒", d:"+1.2" },
+    { id:"lifeSteal", n:"吸血", v:4, u:"%", d:"+4" },
+  ]},
+  { g:"输出", stats:[
+    { id:"attack", n:"攻击力", v:34, u:"%", d:"+5" },
+    { id:"attackSpeed", n:"攻击速度", v:12, u:"%", d:"+12" },
+    { id:"critRate", n:"暴击率", v:11, u:"%", d:"+6" },
+    { id:"critDamage", n:"暴击伤害", v:45, u:"%", d:"+15", hi:true },
+    { id:"range", n:"攻击范围", v:108, u:"%", d:"+8" },
+    { id:"pierce", n:"穿透", v:2, d:"+1" },
+    { id:"aoeScale", n:"范围缩放", v:100, u:"%", d:0 },
+  ]},
+  { g:"防御", stats:[
+    { id:"armor", n:"防御力", v:18, d:"+6" },
+    { id:"dodge", n:"闪避", v:3, u:"%", d:"+3" },
+    { id:"damageReduction", n:"减伤", v:0, u:"%", d:0 },
+  ]},
+  { g:"机动", stats:[
+    { id:"moveSpeed", n:"移速", v:116, u:"%", d:"+8" },
+    { id:"pickupRange", n:"拾取范围", v:120, u:"%", d:"+20" },
+  ]},
+  { g:"幸运 · 财富 · 经济", stats:[
+    { id:"luck", n:"幸运值", v:107, d:"+15", meta:"purple" },
+    { id:"wealth", n:"财富值", v:68, d:"+23", meta:"gold" },
+    { id:"goldGain", n:"金币获取", v:15, u:"%", d:"+15", meta:"gold" },
+  ]},
+];
+
+const BUILD = [
+  { id:"enhanceSuccess", n:"强化成功率", v:"+8%", layer:"③ 养成" },
+  { id:"enchantRareWeight", n:"附魔稀有权重", v:"+12%", layer:"③ 养成" },
+  { id:"enhanceBreakRisk", n:"碎装风险", v:"+5%", layer:"③ 风险", risk:true },
+  { id:"petDamage", n:"宠物伤害", v:"+25%", layer:"③ 宠物" },
+  { id:"maxPetDeploy", n:"出战宠上限", v:"2", layer:"③ 宠物" },
+  { id:"auctionSnatchRate", n:"拍卖被抢", v:"+8%", layer:"③ 风险", risk:true },
+  { id:"casinoWinRate", n:"赌场胜率", v:"+3%", layer:"③ 场所" },
+];
+
+const META = {
+  maxHp:{ layer:"① 主面板", affects:["生命上限","捕获：与 luck 可叠","赌场 debuff↓","挖宝 trap↓"], pos:"血厚也抓得稳", neg:"更脆" },
+  hpRegen:{ layer:"① 主面板", affects:["战斗内每秒回血"], pos:"续航", neg:"不回血" },
+  lifeSteal:{ layer:"① 主面板", affects:["造成伤害转生命"], pos:"越打越满", neg:"无吸血" },
+  attack:{ layer:"① 主面板", affects:["全武器伤害%","捕获/强化/商店 并列加成","luck=0 高攻 → 大力出奇迹"], pos:"打得狠也刷得到", neg:"刮痒" },
+  attackSpeed:{ layer:"① 主面板", affects:["武器射速/冷却"], pos:"射得快", neg:"射得慢" },
+  critRate:{ layer:"① 主面板", affects:["叠在武器基础暴击上"], pos:"暴击多", neg:"不暴" },
+  critDamage:{ layer:"① 主面板", affects:["暴击伤害 ×(1+critDamage)"], pos:"暴得疼", neg:"暴了也不疼" },
+  range:{ layer:"① 主面板", affects:["射程/AOE半径"], pos:"手长", neg:"贴脸" },
+  pierce:{ layer:"① 主面板", affects:["直线额外命中数"], pos:"割草", neg:"单体" },
+  aoeScale:{ layer:"① 主面板", affects:["扇形/地波范围"], pos:"面大", neg:"面小" },
+  armor:{ layer:"① 主面板", affects:["减伤公式","联动：挖宝 trap ↓","联动：拍卖被抢 ↓"], pos:"更硬", neg:"更疼" },
+  dodge:{ layer:"① 主面板", affects:["概率规避命中"], pos:"难打", neg:"必吃" },
+  damageReduction:{ layer:"① 主面板", affects:["最终伤害再乘系数"], pos:"更肉", neg:"更脆" },
+  moveSpeed:{ layer:"① 主面板", affects:["走位像素/秒"], pos:"灵活", neg:"跑不动" },
+  pickupRange:{ layer:"① 主面板", affects:["金币/掉落吸附"], pos:"好捡", neg:"贴脸捡" },
+  luck:{ layer:"① 主面板", affects:["与 attack/wealth 并列：商店、掉落","捕获/强化等与 attack/maxHp 叠","单项 contribution 有 cap"], note:"luck=0 时 attack 等仍可封顶", pos:"叠协同更好", neg:"靠战斗 stat 补" },
+  wealth:{ layer:"① 主面板", affects:["回合结束金币","隐藏池","挖宝/附魔并列线"], pos:"解锁多", neg:"无隐藏" },
+  goldGain:{ layer:"① 主面板", affects:["杀怪/事件即时金币"], pos:"更富", neg:"更穷" },
+  enhanceSuccess:{ layer:"③ Build·养成", affects:["强化主加成","+ attack/luck/critRate 并列"], note:"来自道具/附魔" },
+  petDamage:{ layer:"③ Build·宠物", affects:["出战宠输出"], note:"不在主面板" },
+  auctionSnatchRate:{ layer:"③ Build·风险", affects:["拍卖被抢基础风险","armor/wealth 可减免"], risk:true },
+};
+
+function valClass(s){ if(s.meta==="purple")return"v-purple"; if(s.meta==="gold")return"v-gold"; return"v-green"; }
+
+const panel = document.getElementById("panel");
+let html = `<div class="hero-top"><div class="avatar">🌻</div><div><strong>小葵</strong><br><span style="font-size:.75rem;color:var(--purple)">抓宠 · 局内最终值（含道具加成）</span></div></div>
+<div class="hp-bar" style="height:6px;background:#2a2d3a;border-radius:3px;margin-bottom:4px"><div style="width:72%;height:100%;background:#f87171;border-radius:3px"></div></div>
+<div style="font-size:.78rem;color:var(--muted);margin-bottom:8px">372 / 620</div>`;
+
+PRIMARY.forEach(grp=>{
+  html += `<div class="section l1">${grp.g}</div>`;
+  grp.stats.forEach(s=>{
+    const cls = valClass(s);
+    const delta = s.d && s.d!=="0" ? `<span class="delta"> (${s.d})</span>`:"";
+    html += `<div class="stat-row" data-id="${s.id}"><div><div class="stat-name">${s.n}${s.hi?" ★":""}</div><div class="stat-id">${s.id}</div></div><div class="stat-val ${cls}">${s.v}${s.u||""}${delta}</div></div>`;
+  });
+});
+
+html += `<button class="toggle" id="toggle-build">▼ 展开 ③ Build 加成（不是英雄主属性）</button><div class="build-panel" id="build-panel">`;
+BUILD.forEach(s=>{
+  html += `<div class="stat-row dim" data-id="${s.id}"><div><div class="stat-name">${s.n}</div><div class="stat-id">${s.id} · ${s.layer}</div></div><div class="stat-val ${s.risk?"v-red":"v-cyan"}">${s.v}</div></div>`;
+});
+html += `</div><div class="wallet">💰 钱包金币 <strong>1,240</strong> — 运行时货币，不是财富值 Stat</div>`;
+panel.innerHTML = html;
+
+document.getElementById("toggle-build").onclick = ()=>{
+  const p = document.getElementById("build-panel");
+  p.classList.toggle("open");
+  document.getElementById("toggle-build").textContent = p.classList.contains("open") ? "▲ 收起 ③ Build 加成" : "▼ 展开 ③ Build 加成（不是英雄主属性）";
+};
+
+function showDetail(id){
+  const m = META[id] || { layer:"?", affects:["—"], pos:"—", neg:"—" };
+  document.querySelectorAll(".stat-row").forEach(r=>r.classList.toggle("on", r.dataset.id===id));
+  document.getElementById("detail").innerHTML = `
+    <h2>${PRIMARY.flatMap(g=>g.stats).find(s=>s.id===id)?.n || BUILD.find(s=>s.id===id)?.n || id}</h2>
+    <div class="code">${id}</div>
+    <div class="pills"><span class="pill ${m.layer.startsWith("①")?"l1":"l3"}">${m.layer}</span>${m.risk?'<span class="pill" style="color:var(--red);border-color:#5a2d2d">风险型</span>':""}</div>
+    ${m.note?`<div class="block"><p>${m.note}</p></div>`:""}
+    <div class="block"><h3>影响什么</h3><ul>${m.affects.map(a=>`<li>${a}</li>`).join("")}</ul></div>
+    <div class="block"><h3>正 / 负</h3><ul><li><strong>为正：</strong>${m.pos}</li><li><strong>为负：</strong>${m.neg}</li></ul></div>
+    ${m.formula?`<div class="block"><h3>公式</h3><pre style="font-size:.78rem;color:#a5b4fc">${m.formula}</pre></div>`:""}
+  `;
+}
+
+panel.querySelectorAll(".stat-row").forEach(r=>r.onclick=()=>showDetail(r.dataset.id));
+
+const linkage = [
+  ["构造方式","—","每系统 channels[]：2~N 个 StatId 独立通道 → 求和"],
+  ["捕获","3 通道","attack + luck + maxHp"],
+  ["强化","3 通道","attack + luck + critRate + ③"],
+  ["商店传说","3 通道","luck + attack + wealth"],
+  ["负 attack 例","攻-100 运100","attack通道=0，luck通道满 → 只有运，没有攻"],
+];
+document.getElementById("linkage-body").innerHTML = linkage.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("");
+
+showDetail("luck");
+</script>
+</body>
+</html>

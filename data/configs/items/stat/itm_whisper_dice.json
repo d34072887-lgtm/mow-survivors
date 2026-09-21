@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "itm_whisper_dice",
+  "name": "低语骰子",
+  "tier": "uncommon",
+  "itemCategory": "curse",
+  "sellPrice": 14,
+  "tags": [
+    "gamble"
+  ],
+  "perStack": [
+    {
+      "statId": "luck",
+      "type": "flat",
+      "value": 3
+    }
+  ],
+  "gambleSideEffect": {
+    "enhanceBreakRisk": 0.01
+  }
+}

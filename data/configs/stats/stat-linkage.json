@@ -1,0 +1,48 @@
+{
+  "_comment": "plateau=通道软饱和顶(非stat上限); linkageLane=plateau*(1-exp(-stat*weight/plateau)); stat可无限养成",
+  "capture": {
+    "channels": [
+      { "statId": "attack", "weight": 0.02, "plateau": 0.15 },
+      { "statId": "luck", "weight": 0.015, "plateau": 0.12 },
+      { "statId": "maxHp", "weight": 0.0008, "plateau": 0.12 }
+    ]
+  },
+  "enhance_success": {
+    "channels": [
+      { "statId": "attack", "weight": 0.015, "plateau": 0.10 },
+      { "statId": "luck", "weight": 0.012, "plateau": 0.08 },
+      { "statId": "critRate", "weight": 0.03, "plateau": 0.06 },
+      { "statId": "maxHp", "weight": 0.0006, "plateau": 0.08 }
+    ]
+  },
+  "enchant_rare": {
+    "channels": [
+      { "statId": "luck", "weight": 0.015, "plateau": 0.10 },
+      { "statId": "wealth", "weight": 0.01, "plateau": 0.10 },
+      { "statId": "attack", "weight": 0.012, "plateau": 0.08 },
+      { "statId": "armor", "weight": 0.008, "plateau": 0.08 }
+    ]
+  },
+  "shop_legendary": {
+    "channels": [
+      { "statId": "luck", "weight": 0.018, "plateau": 0.18 },
+      { "statId": "attack", "weight": 0.015, "plateau": 0.18 },
+      { "statId": "wealth", "weight": 0.01, "plateau": 0.14 },
+      { "statId": "maxHp", "weight": 0.0005, "plateau": 0.14 }
+    ]
+  },
+  "casino_debuff_resist": {
+    "channels": [
+      { "statId": "attack", "weight": 0.012, "plateau": 0.22 },
+      { "statId": "maxHp", "weight": 0.0006, "plateau": 0.22 },
+      { "statId": "luck", "weight": 0.006, "plateau": 0.06 }
+    ]
+  },
+  "auction_snatch_resist": {
+    "channels": [
+      { "statId": "armor", "weight": 0.01, "plateau": 0.15 },
+      { "statId": "wealth", "weight": 0.008, "plateau": 0.12 },
+      { "statId": "maxHp", "weight": 0.0004, "plateau": 0.10 }
+    ]
+  }
+}

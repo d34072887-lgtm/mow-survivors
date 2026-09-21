@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "id": "itm_blood_rush",
+  "name": "血涌",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "conditional": {
+    "condition": { "type": "hp_percent_lte", "value": 0.30 },
+    "modifiers": [{ "statId": "attackSpeed", "type": "percent", "value": 0.12 }],
+    "perStackBonus": [{ "statId": "attackSpeed", "type": "percent", "value": 0.02 }]
+  },
+  "sellPrice": 24
+}

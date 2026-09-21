@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "_comment": "回合商店武器池，权重可被 luck/attack/maxHp/wealth 多通道联动修正",
+  "slotsPerRound": { "min": 2, "max": 3 },
+  "entries": [
+    { "weaponId": "wpn_rust_knife", "weight": 100 },
+    { "weaponId": "wpn_pepper_smg", "weight": 90 },
+    { "weaponId": "wpn_nail_cross", "weight": 85 },
+    { "weaponId": "wpn_iron_fan", "weight": 80 },
+    { "weaponId": "wpn_ground_stomp", "weight": 75 },
+    { "weaponId": "wpn_hunter_bow", "weight": 90 },
+    { "weaponId": "wpn_glass_blade", "weight": 60 },
+    { "weaponId": "wpn_heavy_maul", "weight": 70 }
+  ],
+  "linkageKey": "shop_legendary"
+}

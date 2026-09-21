@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7ebe0" />
+  <title>割草游戏 — 主界面预览</title>
+  <style>
+    /* 竖屏 · 暖色水彩 · 「乔布斯式」：立绘是产品，UI 是基础设施 */
+    :root {
+      --w: 390px;
+      --cream: #faf3eb;
+      --rose: #d4847a;
+      --sage-deep: #5a8f62;
+      --ink: #4a3f38;
+      --ink-soft: #8a7b72;
+      --hairline: rgba(74, 63, 56, 0.08);
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #2a2418;
+      font-family: "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei UI", sans-serif;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .phone {
+      width: min(var(--w), 100vw);
+      height: 100vh;
+      max-height: 844px;
+      position: relative;
+      overflow: hidden;
+      background: var(--cream);
+    }
+    @media (min-width: 420px) {
+      .phone { height: 844px; border-radius: 28px; margin: 16px 0; box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    }
+
+    .screen {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding-top: var(--safe-top);
+    }
+
+    /* 顶栏：只留必要信息，无装饰框 */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px 8px;
+      z-index: 10;
+    }
+    .player-line {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+    }
+    .player-line b { color: var(--ink); font-weight: 700; }
+    .top-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .top-icon {
+      position: relative;
+      border: none;
+      background: none;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 4px;
+      opacity: 0.72;
+    }
+    .top-icon:active { opacity: 1; transform: scale(0.92); }
+    .top-icon .badge {
+      position: absolute;
+      top: 0; right: -2px;
+      min-width: 14px; height: 14px;
+      padding: 0 3px;
+      background: var(--rose);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+    }
+    .currencies {
+      display: flex;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .currencies span { opacity: 0.55; margin-right: 2px; }
+
+    /* 看板：立绘占满，UI 不入侵脸区 */
+    .hero-stage {
+      flex: 1;
+      position: relative;
+      min-height: 0;
+    }
+    .hero-art {
+      position: absolute;
+      inset: 0;
+      background: url("hero-xiaokui-portrait-warm-watercolor.png") center 4% / auto 108% no-repeat;
+      pointer-events: none;
+    }
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 64%,
+        rgba(250, 243, 235, 0.5) 78%,
+        rgba(250, 243, 235, 0.96) 90%,
+        var(--cream) 100%
+      );
+    }
+
+    /* 陪伴语：无气泡，一行字幕感 */
+    .quote-caption {
+      position: absolute;
+      top: 0;
+      left: 20px;
+      right: 20px;
+      z-index: 3;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink);
+      text-shadow: 0 1px 12px rgba(255, 252, 248, 0.9);
+      pointer-events: none;
+    }
+    .quote-caption .who {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--rose);
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .quote-caption p {
+      transition: opacity 0.25s ease;
+      max-width: 16em;
+    }
+
+    /* 底部：只留一条可点的状态 + 页码点 */
+    .bottom-stack {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 4;
+      padding: 0 20px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .status-pill {
+      width: 100%;
+      max-width: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 14px;
+      border: none;
+      border-radius: 12px;
+      background: rgba(255, 252, 248, 0.55);
+      backdrop-filter: blur(8px);
+      font: inherit;
+      color: var(--ink);
+      cursor: pointer;
+      text-align: left;
+    }
+    .status-pill:active { background: rgba(255, 252, 248, 0.75); }
+    .status-pill .label {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .status-pill .hint {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 2px;
+    }
+    .status-pill .chev {
+      font-size: 18px;
+      color: var(--ink-soft);
+      opacity: 0.5;
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+
+    .hero-dots {
+      display: flex;
+      gap: 5px;
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(74, 63, 56, 0.18);
+      cursor: pointer;
+      padding: 0;
+    }
+    .dot.on {
+      width: 18px;
+      border-radius: 999px;
+      background: var(--rose);
+    }
+
+    /* 主 CTA：一个按钮，足够大，无动效炫技 */
+    .cta-zone {
+      padding: 4px 20px 16px;
+      z-index: 5;
+    }
+    .btn-start {
+      width: 100%;
+      height: 54px;
+      border: none;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-indent: 0.28em;
+      color: #fff;
+      background: var(--rose);
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(212, 132, 122, 0.35);
+    }
+    .btn-start:active {
+      transform: scale(0.985);
+      box-shadow: 0 2px 8px rgba(212, 132, 122, 0.3);
+    }
+
+    /* 底栏：4 项，图标 + 短标签 */
+    .bottom-nav {
+      display: flex;
+      padding: 6px 12px calc(10px + var(--safe-bottom));
+      border-top: 1px solid var(--hairline);
+      background: var(--cream);
+    }
+    .nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 6px 0;
+      color: var(--ink-soft);
+      font-size: 10px;
+      font-weight: 600;
+    }
+    .nav-item .ni { font-size: 22px; line-height: 1; opacity: 0.65; }
+    .nav-item.on { color: var(--ink); }
+    .nav-item.on .ni { opacity: 1; }
+
+    /* 详情 sheet：羁绊 / 试手气 / 图鉴 / 商店 收在这里 */
+    .sheet-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(40, 32, 28, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+      z-index: 80;
+    }
+    .sheet-backdrop.open { opacity: 1; pointer-events: auto; }
+
+    .sheet {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      width: min(var(--w), 100vw);
+      transform: translate(-50%, 100%);
+      transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1);
+      z-index: 90;
+      background: #fffefb;
+      border-radius: 20px 20px 0 0;
+      padding: 12px 20px calc(24px + var(--safe-bottom));
+      box-shadow: 0 -8px 40px rgba(60, 40, 30, 0.12);
+    }
+    .sheet.open { transform: translate(-50%, 0); }
+    .sheet-handle {
+      width: 36px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(74, 63, 56, 0.15);
+      margin: 0 auto 16px;
+    }
+    .sheet h2 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .sheet-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--hairline);
+      font-size: 15px;
+    }
+    .sheet-row:last-child { border-bottom: none; }
+    .sheet-row button {
+      border: none;
+      background: none;
+      font: inherit;
+      color: var(--rose);
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0;
+    }
+    .pet-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .pet-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(143, 181, 138, 0.15);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+    }
+    .pet-dot.empty {
+      background: transparent;
+      border: 1px dashed rgba(143, 181, 138, 0.4);
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 96px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 18px;
+      border-radius: 10px;
+      background: rgba(74, 63, 56, 0.88);
+      color: #fff;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+      z-index: 99;
+    }
+    .toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="phone" id="phone">
+    <div class="screen">
+      <header class="top-bar">
+        <div class="player-line"><b>Lv.12</b> · 旅人</div>
+        <div class="top-right">
+          <button class="top-icon" type="button" data-toast="今日邮件：3 条未读" aria-label="邮件">✉️<span class="badge">3</span></button>
+          <div class="currencies" aria-label="资源">
+            <div><span>🪙</span>2,480</div>
+            <div><span>🍀</span>115</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="hero-stage">
+        <div class="hero-art" aria-hidden="true"></div>
+
+        <div class="quote-caption" id="quote">
+          <div class="who">小葵 · 驯兽师</div>
+          <p id="quoteText">今天的幸运值不错……要不要一起去抓一只圆滚滚的伙伴？</p>
+        </div>
+
+        <div class="bottom-stack">
+          <button class="status-pill" type="button" id="openSheet" aria-expanded="false">
+            <div>
+              <div class="label">3 只伙伴 · 今日试手气可领</div>
+              <div class="hint">羁绊 3/6 · 点按查看</div>
+            </div>
+            <span class="chev" aria-hidden="true">›</span>
+          </button>
+          <div class="hero-dots" id="heroDots" aria-label="切换英雄">
+            <button class="dot on" type="button" aria-label="小葵"></button>
+            <button class="dot" type="button" aria-label="老金"></button>
+            <button class="dot" type="button" aria-label="零"></button>
+          </div>
+        </div>
+      </main>
+
+      <div class="cta-zone">
+        <button class="btn-start" type="button" id="btnStart">出 发</button>
+      </div>
+
+      <nav class="bottom-nav" aria-label="主导航">
+        <button class="nav-item on" type="button"><span class="ni">🏠</span>首页</button>
+        <button class="nav-item" type="button" data-toast="英雄列表开发中"><span class="ni">💫</span>英雄</button>
+        <button class="nav-item" type="button" data-toast="图鉴：已收集 12 / 48"><span class="ni">📖</span>图鉴</button>
+        <button class="nav-item" type="button" data-toast="商店 · 设置 · 任务"><span class="ni">⋯</span>更多</button>
+      </nav>
+    </div>
+  </div>
+
+  <div class="sheet-backdrop" id="sheetBackdrop"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-labelledby="sheetTitle" aria-hidden="true">
+    <div class="sheet-handle"></div>
+    <h2 id="sheetTitle">今日</h2>
+    <div class="sheet-row">
+      <div>
+        <div>宠物羁绊</div>
+        <div class="pet-row">
+          <div class="pet-dot">🫧</div>
+          <div class="pet-dot">🦎</div>
+          <div class="pet-dot">🐾</div>
+          <div class="pet-dot empty">＋</div>
+          <div class="pet-dot empty">＋</div>
+          <div class="pet-dot empty">＋</div>
+        </div>
+      </div>
+      <span style="color:var(--ink-soft);font-size:13px">3 / 6</span>
+    </div>
+    <div class="sheet-row">
+      <span>今日试手气 · 商店刷新 -20%</span>
+      <button type="button" id="claimLuck">领取</button>
+    </div>
+    <div class="sheet-row">
+      <span>任务 · 再抓 1 只宠物</span>
+      <button type="button" data-toast="任务详情开发中">查看</button>
+    </div>
+    <div class="sheet-row">
+      <span>商店</span>
+      <button type="button" data-toast="商店：今日刷新 -20%">进入</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const quotes = [
+      "今天的幸运值不错……要不要一起去抓一只圆滚滚的伙伴？",
+      "合并之后它们会变得更乖更强，我会好好记录的。",
+      "局里交给走位就好，捕获的事交给我。",
+    ];
+    let qi = 0;
+    setInterval(() => {
+      qi = (qi + 1) % quotes.length;
+      const el = document.getElementById("quoteText");
+      el.style.opacity = 0;
+      setTimeout(() => { el.textContent = quotes[qi]; el.style.opacity = 1; }, 200);
+    }, 6000);
+
+    const toast = document.getElementById("toast");
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    document.querySelectorAll("[data-toast]").forEach(el => {
+      el.addEventListener("click", () => showToast(el.dataset.toast));
+    });
+
+    const sheet = document.getElementById("sheet");
+    const backdrop = document.getElementById("sheetBackdrop");
+    const openBtn = document.getElementById("openSheet");
+
+    function setSheet(open) {
+      sheet.classList.toggle("open", open);
+      backdrop.classList.toggle("open", open);
+      sheet.setAttribute("aria-hidden", open ? "false" : "true");
+      openBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+
+    openBtn.addEventListener("click", () => setSheet(true));
+    backdrop.addEventListener("click", () => setSheet(false));
+
+    document.getElementById("claimLuck").addEventListener("click", () => {
+      showToast("获得：今日商店首次刷新 -20% 🍀");
+      setSheet(false);
+    });
+
+    document.getElementById("btnStart").addEventListener("click", () => {
+      window.location.href = "battle-vertical.html";
+    });
+
+    document.getElementById("heroDots").addEventListener("click", e => {
+      const dot = e.target.closest(".dot");
+      if (!dot) return;
+      document.querySelectorAll(".dot").forEach(d => d.classList.remove("on"));
+      dot.classList.add("on");
+      showToast("切换英雄（预览占位）");
+    });
+  </script>
+</body>
+</html>

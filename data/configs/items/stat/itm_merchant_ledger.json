@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "itm_merchant_ledger",
+  "name": "商贾账本",
+  "tier": "uncommon",
+  "itemCategory": "venue",
+  "sellPrice": 16,
+  "perStack": [
+    {
+      "statId": "shopDiscount",
+      "type": "percent",
+      "value": 0.03
+    }
+  ]
+}

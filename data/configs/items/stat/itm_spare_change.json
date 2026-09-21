@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "itm_spare_change",
+  "name": "找零硬币",
+  "tier": "common",
+  "itemCategory": "stat",
+  "sellPrice": 6,
+  "perStack": [
+    {
+      "statId": "goldGain",
+      "type": "percent",
+      "value": 0.03
+    }
+  ]
+}

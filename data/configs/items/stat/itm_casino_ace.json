@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "id": "itm_casino_ace",
+  "name": "赌场王牌",
+  "tier": "legendary",
+  "itemCategory": "venue",
+  "sellPrice": 56,
+  "tags": [
+    "gamble"
+  ],
+  "conditional": {
+    "condition": {
+      "type": "luck_gte",
+      "value": 80
+    },
+    "modifiers": [
+      {
+        "statId": "casinoWinRate",
+        "type": "percent",
+        "value": 0.1
+      },
+      {
+        "statId": "casinoEnforcerDelay",
+        "type": "percent",
+        "value": 0.12
+      }
+    ]
+  }
+}

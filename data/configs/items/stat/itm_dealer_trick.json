@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "id": "itm_dealer_trick",
+  "name": "庄家袖里牌",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 25,
+  "archetypeBridge": {
+    "targetArchetype": "gambler",
+    "outsiderOnly": true,
+    "perStack": [
+      {
+        "statId": "wealth",
+        "type": "flat",
+        "value": 2
+      },
+      {
+        "statId": "casinoEnforcerDelay",
+        "type": "percent",
+        "value": 0.06
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "itm_six_shooter_oath",
+  "name": "六枪誓约",
+  "tier": "legendary",
+  "itemCategory": "stat",
+  "sellPrice": 52,
+  "tags": [
+    "ranged"
+  ],
+  "conditional": {
+    "condition": {
+      "type": "weapon_tag_count",
+      "tag": "ranged",
+      "value": 5
+    },
+    "modifiers": [
+      {
+        "statId": "attackSpeed",
+        "type": "percent",
+        "value": 0.2
+      }
+    ]
+  }
+}

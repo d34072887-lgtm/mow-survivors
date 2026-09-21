@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "id": "itm_steady_pulse",
+  "name": "稳态脉搏仪",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 14,
+  "tags": [
+    "sustain"
+  ],
+  "perStack": [
+    {
+      "statId": "hpRegen",
+      "type": "flat",
+      "value": 3
+    },
+    {
+      "statId": "maxHp",
+      "type": "percent",
+      "value": 0.02
+    }
+  ]
+}

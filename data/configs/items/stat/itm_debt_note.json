@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "itm_debt_note",
+  "name": "欠条",
+  "tier": "rare",
+  "itemCategory": "curse",
+  "sellPrice": 20,
+  "perStack": [
+    {
+      "statId": "attack",
+      "type": "percent",
+      "value": 0.08
+    }
+  ],
+  "gambleSideEffect": {
+    "casinoWinRate": -0.03
+  }
+}

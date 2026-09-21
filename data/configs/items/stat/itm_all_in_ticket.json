@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "id": "itm_all_in_ticket",
+  "name": "梭哈入场券",
+  "tier": "legendary",
+  "itemCategory": "curse",
+  "sellPrice": 35,
+  "tags": [
+    "gamble"
+  ],
+  "perStack": [
+    {
+      "statId": "luck",
+      "type": "flat",
+      "value": 8
+    }
+  ],
+  "gambleSideEffect": {
+    "casinoWinRate": 0.05,
+    "auctionSnatchRate": 0.08
+  }
+}

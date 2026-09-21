@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "id": "itm_rage_serum",
+  "name": "狂战士血清",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 17,
+  "archetypeBridge": {
+    "targetArchetype": "dps",
+    "outsiderOnly": true,
+    "perStack": [
+      {
+        "statId": "attack",
+        "type": "percent",
+        "value": 0.04
+      },
+      {
+        "statId": "critRate",
+        "type": "percent",
+        "value": 0.02
+      }
+    ]
+  }
+}

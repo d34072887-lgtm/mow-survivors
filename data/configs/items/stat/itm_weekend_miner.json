@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "id": "itm_weekend_miner",
+  "name": "周末矿工证",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 17,
+  "archetypeBridge": {
+    "targetArchetype": "dig",
+    "outsiderOnly": true,
+    "perStack": [
+      {
+        "statId": "wealth",
+        "type": "flat",
+        "value": 2
+      },
+      {
+        "statId": "luck",
+        "type": "flat",
+        "value": 1
+      },
+      {
+        "statId": "goldGain",
+        "type": "percent",
+        "value": 0.03
+      }
+    ]
+  }
+}

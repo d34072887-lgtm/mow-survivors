@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "itm_jinx_bracelet",
+  "name": "厄运手镯",
+  "tier": "rare",
+  "itemCategory": "curse",
+  "sellPrice": 19,
+  "perStack": [
+    {
+      "statId": "attack",
+      "type": "percent",
+      "value": 0.15
+    },
+    {
+      "statId": "dodge",
+      "type": "percent",
+      "value": -0.03
+    }
+  ]
+}

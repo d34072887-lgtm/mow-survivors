@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "id": "itm_pierce_dimension",
+  "name": "贯穿次元",
+  "tier": "legendary",
+  "itemCategory": "stat",
+  "sellPrice": 54,
+  "tags": [
+    "pierce"
+  ],
+  "conditional": {
+    "condition": {
+      "type": "pierce_gte",
+      "value": 5
+    },
+    "modifiers": [
+      {
+        "statId": "range",
+        "type": "percent",
+        "value": 0.2
+      },
+      {
+        "statId": "pierce",
+        "type": "flat",
+        "value": 2
+      }
+    ]
+  }
+}

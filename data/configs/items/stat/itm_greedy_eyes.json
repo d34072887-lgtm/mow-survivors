@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "itm_greedy_eyes",
+  "name": "贪婪之眼",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 24,
+  "conditional": {
+    "condition": {
+      "type": "wealth_gte",
+      "value": 80
+    },
+    "modifiers": [
+      {
+        "statId": "goldGain",
+        "type": "percent",
+        "value": 0.06
+      }
+    ]
+  }
+}

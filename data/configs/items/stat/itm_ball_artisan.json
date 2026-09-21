@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "id": "itm_ball_artisan",
+  "name": "制球匠手套",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 17,
+  "tags": [
+    "build_capture"
+  ],
+  "perStack": [
+    {
+      "statId": "luck",
+      "type": "flat",
+      "value": 2
+    }
+  ],
+  "archetypeFit": {
+    "heroArchetype": "capture",
+    "perStackMultiplier": 1.5
+  }
+}

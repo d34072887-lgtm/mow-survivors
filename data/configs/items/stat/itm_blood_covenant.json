@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "id": "itm_blood_covenant",
+  "name": "血之契约",
+  "tier": "legendary",
+  "itemCategory": "stat",
+  "sellPrice": 52,
+  "tags": [
+    "sustain"
+  ],
+  "conditional": {
+    "condition": {
+      "type": "lifeSteal_gte",
+      "value": 0.08
+    },
+    "modifiers": [
+      {
+        "statId": "maxHp",
+        "type": "flat",
+        "value": 20
+      },
+      {
+        "statId": "hpRegen",
+        "type": "flat",
+        "value": 5
+      }
+    ]
+  }
+}

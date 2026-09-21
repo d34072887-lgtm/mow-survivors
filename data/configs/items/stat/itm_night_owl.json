@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "itm_night_owl",
+  "name": "夜枭镜片",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 23,
+  "conditional": {
+    "condition": {
+      "type": "move_speed_gte",
+      "value": 0.25
+    },
+    "modifiers": [
+      {
+        "statId": "critRate",
+        "type": "percent",
+        "value": 0.04
+      }
+    ]
+  }
+}

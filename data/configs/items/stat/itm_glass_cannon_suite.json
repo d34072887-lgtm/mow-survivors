@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "id": "itm_glass_cannon_suite",
+  "name": "玻璃大炮组",
+  "tier": "legendary",
+  "itemCategory": "curse",
+  "sellPrice": 50,
+  "perStack": [
+    {
+      "statId": "maxHp",
+      "type": "percent",
+      "value": -0.05
+    }
+  ],
+  "conditional": {
+    "condition": {
+      "type": "attack_gte",
+      "value": 120
+    },
+    "modifiers": [
+      {
+        "statId": "critDamage",
+        "type": "percent",
+        "value": 0.25
+      }
+    ]
+  }
+}

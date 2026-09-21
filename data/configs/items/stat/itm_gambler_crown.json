@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "id": "itm_gambler_crown",
+  "name": "赌徒王冠",
+  "tier": "legendary",
+  "itemCategory": "stat",
+  "tags": ["gamble"],
+  "perStack": [
+    { "statId": "luck", "type": "flat", "value": 3 },
+    { "statId": "wealth", "type": "flat", "value": 2 }
+  ],
+  "conditional": {
+    "condition": { "type": "wealth_gte", "value": 120 },
+    "modifiers": [{ "statId": "goldGain", "type": "percent", "value": 0.08 }]
+  },
+  "sellPrice": 50
+}

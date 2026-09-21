@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "itm_heavy_gait",
+  "name": "沉重步态",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "conditional": {
+    "condition": { "type": "hp_max_gte", "value": 500, "perStackThresholdDelta": -40 },
+    "modifiers": [{ "statId": "moveSpeed", "type": "percent", "value": 0.08 }]
+  },
+  "sellPrice": 22
+}

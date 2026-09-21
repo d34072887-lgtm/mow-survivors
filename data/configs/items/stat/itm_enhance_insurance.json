@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "itm_enhance_insurance",
+  "name": "强化保单",
+  "tier": "rare",
+  "itemCategory": "venue",
+  "sellPrice": 28,
+  "perStack": [
+    {
+      "statId": "enhanceBreakRisk",
+      "type": "percent",
+      "value": -0.02
+    }
+  ]
+}

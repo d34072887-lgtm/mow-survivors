@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "id": "itm_fresh_blood",
+  "name": "新鲜血液",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 22,
+  "tags": [
+    "sustain"
+  ],
+  "conditional": {
+    "condition": {
+      "type": "hp_percent_gte",
+      "value": 0.95
+    },
+    "modifiers": [
+      {
+        "statId": "lifeSteal",
+        "type": "percent",
+        "value": 0.03
+      }
+    ]
+  }
+}

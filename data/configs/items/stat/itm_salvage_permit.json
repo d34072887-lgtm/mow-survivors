@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "itm_salvage_permit",
+  "name": "回收许可证",
+  "tier": "uncommon",
+  "itemCategory": "venue",
+  "sellPrice": 12,
+  "perStack": [
+    {
+      "statId": "sellBonus",
+      "type": "percent",
+      "value": 0.08
+    }
+  ]
+}

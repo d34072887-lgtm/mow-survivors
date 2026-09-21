@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "itm_shovel_gold",
+  "name": "金铲",
+  "tier": "rare",
+  "itemCategory": "consumable",
+  "sellPrice": 35,
+  "consumableEffect": "dig_deep"
+}

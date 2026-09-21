@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "wpn_rust_knife",
+  "name": "生锈短刀",
+  "attackPattern": "melee_arc",
+  "tags": ["melee"],
+  "qualityTiers": {
+    "white": {
+      "baseStats": [{ "statId": "attack", "type": "flat", "value": 8 }],
+      "shopWeight": 100
+    }
+  },
+  "flavor": "入门近战，白值均衡"
+}

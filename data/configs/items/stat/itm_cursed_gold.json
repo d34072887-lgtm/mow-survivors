@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "itm_cursed_gold",
+  "name": "诅咒金块",
+  "tier": "rare",
+  "itemCategory": "curse",
+  "sellPrice": 18,
+  "perStack": [
+    {
+      "statId": "goldGain",
+      "type": "percent",
+      "value": 0.12
+    },
+    {
+      "statId": "moveSpeed",
+      "type": "percent",
+      "value": -0.04
+    }
+  ]
+}

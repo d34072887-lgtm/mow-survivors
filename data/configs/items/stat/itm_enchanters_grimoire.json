@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "itm_enchanters_grimoire",
+  "name": "附魔魔典",
+  "tier": "legendary",
+  "itemCategory": "stat",
+  "sellPrice": 53,
+  "conditional": {
+    "condition": {
+      "type": "affix_count_gte",
+      "value": 10
+    },
+    "modifiers": [
+      {
+        "statId": "enchantRareWeight",
+        "type": "percent",
+        "value": 0.15
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "itm_refresh_coupon",
+  "name": "刷新优惠券",
+  "tier": "uncommon",
+  "itemCategory": "venue",
+  "sellPrice": 14,
+  "perStack": [
+    {
+      "statId": "attributeRefreshDiscount",
+      "type": "percent",
+      "value": 0.05
+    }
+  ]
+}

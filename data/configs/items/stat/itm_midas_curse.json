@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "itm_midas_curse",
+  "name": "迈达斯诅咒",
+  "tier": "legendary",
+  "itemCategory": "curse",
+  "sellPrice": 45,
+  "perStack": [
+    {
+      "statId": "goldGain",
+      "type": "percent",
+      "value": 0.15
+    },
+    {
+      "statId": "moveSpeed",
+      "type": "percent",
+      "value": -0.03
+    }
+  ]
+}

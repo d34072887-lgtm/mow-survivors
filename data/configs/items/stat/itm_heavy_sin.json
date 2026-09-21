@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "id": "itm_heavy_sin",
+  "name": "重负罪印",
+  "tier": "rare",
+  "itemCategory": "curse",
+  "sellPrice": 18,
+  "tags": [
+    "tank"
+  ],
+  "perStack": [
+    {
+      "statId": "damageReduction",
+      "type": "percent",
+      "value": 0.06
+    },
+    {
+      "statId": "moveSpeed",
+      "type": "percent",
+      "value": -0.05
+    }
+  ]
+}

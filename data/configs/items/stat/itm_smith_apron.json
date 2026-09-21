@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "id": "itm_smith_apron",
+  "name": "借来的铁匠围裙",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 17,
+  "archetypeBridge": {
+    "targetArchetype": "enhance",
+    "outsiderOnly": true,
+    "perStack": [
+      {
+        "statId": "enhanceSuccess",
+        "type": "percent",
+        "value": 0.02
+      },
+      {
+        "statId": "attack",
+        "type": "percent",
+        "value": 0.02
+      }
+    ]
+  }
+}

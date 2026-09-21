@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "itm_burst_core",
+  "name": "连射核心",
+  "tier": "legendary",
+  "itemCategory": "stat",
+  "tags": ["burst"],
+  "conditional": {
+    "condition": { "type": "weapon_tag_count", "tag": "burst", "value": 4 },
+    "modifiers": [{ "statId": "critDamage", "type": "percent", "value": 0.10 }],
+    "perStackBonus": [{ "statId": "critDamage", "type": "percent", "value": 0.03 }]
+  },
+  "sellPrice": 48
+}

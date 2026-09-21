@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#5a8f62" />
+  <title>割草游戏 — 局内预览</title>
+  <style>
+    :root {
+      --cream: #faf3eb;
+      --ink: #4a3f38;
+      --ink-soft: #8a7b72;
+      --rose: #d4847a;
+      --sage: #5a8f62;
+      --gold: #c9983a;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      /* 拇指区：随屏高比例缩放，并设上下限 */
+      --control-h: clamp(128px, 24vh, 196px);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #2a2418;
+      font-family: "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei UI", sans-serif;
+      color: var(--ink);
+    }
+
+    #app {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: var(--cream);
+    }
+
+    /* 战场：占满除拇指区外的全部高度 */
+    .battle-wrap {
+      flex: 1;
+      min-height: 0;
+      position: relative;
+      background: #8fb58a;
+    }
+
+    #battle {
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    /* HUD：贴边细条，不挡中间 */
+    .hud {
+      position: absolute;
+      top: calc(8px + var(--safe-top));
+      left: 12px;
+      right: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hud-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hp-track {
+      flex: 1;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.35);
+      overflow: hidden;
+    }
+    .hp-fill {
+      height: 100%;
+      width: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #8fb58a, #5a8f62);
+      transition: width 0.15s ease;
+    }
+    .hud-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 252, 248, 0.82);
+      font-size: clamp(11px, 2.8vw, 13px);
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(60, 40, 30, 0.08);
+    }
+    .hud-pill.timer { color: var(--rose); min-width: 3.2em; text-align: center; }
+    .round-tag {
+      font-size: clamp(10px, 2.5vw, 11px);
+      color: var(--ink-soft);
+      padding-left: 2px;
+    }
+
+    /* 拇指区 */
+    .controls {
+      flex-shrink: 0;
+      height: calc(var(--control-h) + var(--safe-bottom));
+      padding: 10px 16px calc(10px + var(--safe-bottom));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(250, 243, 235, 0.96);
+      border-top: 1px solid rgba(74, 63, 56, 0.06);
+    }
+
+    .joystick {
+      position: relative;
+      width: clamp(96px, 26vw, 120px);
+      height: clamp(96px, 26vw, 120px);
+      flex-shrink: 0;
+    }
+    .joy-base {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: rgba(143, 181, 138, 0.18);
+      border: 1px solid rgba(90, 143, 98, 0.25);
+    }
+    .joy-stick {
+      position: absolute;
+      width: 44%;
+      height: 44%;
+      left: 28%;
+      top: 28%;
+      border-radius: 50%;
+      background: rgba(255, 252, 248, 0.95);
+      border: 1px solid rgba(90, 143, 98, 0.35);
+      box-shadow: 0 4px 12px rgba(60, 40, 30, 0.12);
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .btn-skill {
+      width: clamp(56px, 15vw, 68px);
+      height: clamp(56px, 15vw, 68px);
+      border-radius: 50%;
+      border: 1px solid rgba(212, 132, 122, 0.4);
+      background: rgba(255, 252, 248, 0.9);
+      font-size: clamp(22px, 6vw, 28px);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .btn-skill:active { transform: scale(0.94); }
+    .btn-skill.on { box-shadow: 0 0 0 3px rgba(212, 132, 122, 0.35); }
+
+    .control-hint {
+      flex: 1;
+      text-align: center;
+      font-size: clamp(11px, 2.8vw, 12px);
+      color: var(--ink-soft);
+      line-height: 1.45;
+      padding: 0 4px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      top: 42%;
+      transform: translate(-50%, -50%) scale(0.92);
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: rgba(74, 63, 56, 0.9);
+      color: #fff;
+      font-size: clamp(13px, 3.5vw, 15px);
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 50;
+      max-width: 86vw;
+      text-align: center;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(40, 32, 28, 0.55);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      z-index: 60;
+    }
+    .overlay.open { opacity: 1; pointer-events: auto; }
+    .overlay-card {
+      width: min(320px, 88vw);
+      padding: 24px 20px;
+      border-radius: 16px;
+      background: #fffefb;
+      text-align: center;
+    }
+    .overlay-card h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .overlay-card p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .overlay-card button {
+      width: 100%;
+      height: 48px;
+      border: none;
+      border-radius: 12px;
+      background: var(--rose);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .overlay-card button.secondary {
+      margin-top: 8px;
+      background: transparent;
+      color: var(--ink-soft);
+      border: 1px solid rgba(74, 63, 56, 0.12);
+    }
+
+    .load-msg {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: #8fb58a;
+      color: #fff;
+      font-size: 14px;
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="battle-wrap" id="battleWrap">
+      <canvas id="battle"></canvas>
+      <div class="hud">
+        <div class="hud-row">
+          <div class="hp-track"><div class="hp-fill" id="hpFill"></div></div>
+          <div class="hud-pill timer" id="timer">15</div>
+        </div>
+        <div class="hud-row">
+          <div class="hud-pill">🪙 <span id="gold">0</span></div>
+          <div class="hud-pill">🐾 <span id="kills">0</span></div>
+          <div class="round-tag" id="roundTag">第 1 回合</div>
+        </div>
+      </div>
+      <div class="load-msg" id="loadMsg">加载中…</div>
+    </div>
+
+    <div class="controls">
+      <div class="joystick" id="joystick">
+        <div class="joy-base"></div>
+        <div class="joy-stick" id="joyStick"></div>
+      </div>
+      <div class="control-hint">小葵在走，武器在转<br />你只管走位</div>
+      <button class="btn-skill" type="button" id="btnSkill" aria-label="诱捕标记">🎯</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="overlay" id="overlay">
+    <div class="overlay-card">
+      <h2 id="overlayTitle">第 1 回合结束</h2>
+      <p id="overlayBody">击杀 0 只 · 金币 0</p>
+      <button type="button" id="btnAgain">再来一局</button>
+      <button type="button" class="secondary" id="btnHome">返回主界面</button>
+    </div>
+  </div>
+
+  <script>
+    /* ── 协调感：所有尺度/节奏从一个 TUNING 推导，不单独拧参数 ── */
+    const TUNING = {
+      tile: 32,
+      heroPx: 32,
+      slimePx: 18,
+      viewHWorld: 480,
+      playerAnchorY: 0.60,
+      movePx: 25,
+      accel: 520,
+      decel: 680,
+      camLerp: 7,
+      orbCount: 2,
+      orbRadius: 26,
+      orbRadPerSec: 1.1,
+      orbPx: 5,
+      monsterSpeedRatio: 0.50,
+      maxOnScreen: 7,
+      contactDps: 8,
+    };
+    const WORLD = { w: 2400, h: 2400 };
+    const ROUND = { duration: 15, spawnTotal: 15, id: 1 };
+    const JOY_DEADZONE = 0.15;
+    const JOY_MAX_R = 52;
+
+    const ASSETS = {
+      hero: {
+        sheet: "../../assets/characters/hero_xiaokui/walk-sheet.png",
+        manifest: "../../assets/characters/hero_xiaokui/manifest.json",
+      },
+      slime: {
+        sheet: "../../assets/monsters/slime/idle-sheet.png",
+        manifest: "../../assets/monsters/slime/manifest.json",
+      },
+    };
+
+    const canvas = document.getElementById("battle");
+    const ctx = canvas.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+
+    const hpFill = document.getElementById("hpFill");
+    const timerEl = document.getElementById("timer");
+    const goldEl = document.getElementById("gold");
+    const killsEl = document.getElementById("kills");
+    const loadMsg = document.getElementById("loadMsg");
+    const toastEl = document.getElementById("toast");
+    const overlay = document.getElementById("overlay");
+    const joyStick = document.getElementById("joyStick");
+    const joystickEl = document.getElementById("joystick");
+
+    let viewW = 390, viewH = 600, dpr = 1, zoom = 1;
+    let heroAnim, slimeAnim, heroImg, slimeImg;
+    let running = false, paused = false;
+
+    const joy = { active: false, id: null, cx: 0, cy: 0, vx: 0, vy: 0 };
+
+    const state = {
+      player: { x: WORLD.w / 2, y: WORLD.h / 2, hp: 100, maxHp: 100 },
+      camera: { x: WORLD.w / 2, y: WORLD.h / 2 },
+      velocity: { x: 0, y: 0 },
+      gold: 0,
+      kills: 0,
+      timeLeft: ROUND.duration,
+      spawned: 0,
+      spawnTimer: 0,
+      monsters: [],
+      orbs: [],
+      orbAngle: 0,
+      lureUntil: 0,
+      captureBonus: 1,
+      heroFlipX: false,
+    };
+
+    class SpriteAnimator {
+      constructor(manifest, image) {
+        this.manifest = manifest;
+        this.image = image;
+        this.anim = "walk_down";
+        this.frameIndex = 0;
+        this.elapsed = 0;
+      }
+      get frameRect() { return this.manifest.frames[this.currentFrameName].frame; }
+      get pivot() { return this.manifest.frames[this.currentFrameName].pivot; }
+      get currentFrameName() {
+        const a = this.manifest.animations[this.anim];
+        return a.frames[this.frameIndex % a.frames.length];
+      }
+      update(dt, speedMul = 1) {
+        const a = this.manifest.animations[this.anim];
+        const fd = 1 / (a.frameRate * speedMul);
+        this.elapsed += dt;
+        while (this.elapsed >= fd) {
+          this.elapsed -= fd;
+          this.frameIndex = (this.frameIndex + 1) % a.frames.length;
+        }
+      }
+      drawAt(ctx, x, y, scale, flipX = false) {
+        const f = this.frameRect;
+        const p = this.pivot;
+        const dw = Math.round(f.w * scale);
+        const dh = Math.round(f.h * scale);
+        if (flipX) {
+          ctx.save();
+          ctx.translate(x, y);
+          ctx.scale(-1, 1);
+          ctx.drawImage(this.image, f.x, f.y, f.w, f.h, -dw * p.x, -dh * p.y, dw, dh);
+          ctx.restore();
+        } else {
+          ctx.drawImage(this.image, f.x, f.y, f.w, f.h, x - dw * p.x, y - dh * p.y, dw, dh);
+        }
+      }
+    }
+
+    function spriteScale(frameH, targetPx) {
+      return targetPx / (frameH * zoom);
+    }
+
+    function resize() {
+      const rect = document.getElementById("battleWrap").getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      viewW = rect.width;
+      viewH = rect.height;
+      canvas.width = Math.round(viewW * dpr);
+      canvas.height = Math.round(viewH * dpr);
+      canvas.style.width = viewW + "px";
+      canvas.style.height = viewH + "px";
+      zoom = viewH / TUNING.viewHWorld;
+    }
+
+    function worldToScreen(wx, wy) {
+      const c = state.camera;
+      return {
+        x: (wx - c.x) * zoom + viewW / 2,
+        y: (wy - c.y) * zoom + viewH * TUNING.playerAnchorY,
+      };
+    }
+
+    function screenEdgeDist() {
+      return Math.hypot(viewW, viewH) / zoom * 0.52 + TUNING.tile;
+    }
+
+    function drawTilemap() {
+      const c = state.camera;
+      const tile = TUNING.tile;
+      const pad = 2;
+      const halfW = viewW / zoom / 2;
+      const halfH = viewH / zoom / 2;
+      const startTx = Math.floor((c.x - halfW) / tile) - pad;
+      const endTx = Math.ceil((c.x + halfW) / tile) + pad;
+      const startTy = Math.floor((c.y - halfH) / tile) - pad;
+      const endTy = Math.ceil((c.y + halfH) / tile) + pad;
+
+      for (let ty = startTy; ty <= endTy; ty++) {
+        for (let tx = startTx; tx <= endTx; tx++) {
+          const wx = tx * tile;
+          const wy = ty * tile;
+          const s = worldToScreen(wx, wy);
+          const ts = tile * zoom;
+          const cheq = (tx + ty) % 2 === 0;
+          ctx.fillStyle = cheq ? "#8fb58a" : "#7da870";
+          ctx.fillRect(Math.floor(s.x), Math.floor(s.y), Math.ceil(ts) + 1, Math.ceil(ts) + 1);
+          if (cheq) {
+            ctx.fillStyle = "rgba(250, 243, 235, 0.07)";
+            ctx.fillRect(Math.floor(s.x), Math.floor(s.y), Math.ceil(ts) + 1, Math.ceil(ts) + 1);
+          }
+        }
+      }
+    }
+
+    /* 左右：只用 walk_right 一行，左走 canvas 镜像（AI sheet 左右行不可靠） */
+    function pickAnim(vx, vy) {
+      if (Math.abs(vx) >= Math.abs(vy)) {
+        return { anim: "walk_right", flipX: vx < 0 };
+      }
+      return { anim: vy < 0 ? "walk_up" : "walk_down", flipX: false };
+    }
+
+    function spawnSlime() {
+      if (state.monsters.length >= TUNING.maxOnScreen) return;
+      const angle = Math.random() * Math.PI * 2;
+      const dist = screenEdgeDist();
+      const baseSpeed = (TUNING.movePx / zoom) * TUNING.monsterSpeedRatio;
+      state.monsters.push({
+        x: state.player.x + Math.cos(angle) * dist,
+        y: state.player.y + Math.sin(angle) * dist,
+        hp: 18,
+        maxHp: 18,
+        speed: baseSpeed * (0.85 + Math.random() * 0.3),
+        hitFlash: 0,
+        capturable: true,
+      });
+      state.spawned++;
+    }
+
+    function showToast(msg, ms = 1800) {
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => toastEl.classList.remove("show"), ms);
+    }
+
+    function onMonsterKill(m) {
+      state.kills++;
+      state.gold += 3;
+      killsEl.textContent = state.kills;
+      goldEl.textContent = state.gold;
+
+      const rate = 0.32 * state.captureBonus;
+      if (m.capturable && Math.random() < rate) {
+        showToast("捕获成功！幼体史莱姆 ×1 已合并");
+      }
+    }
+
+    function endRound() {
+      running = false;
+      document.getElementById("overlayTitle").textContent = `第 ${ROUND.id} 回合结束`;
+      document.getElementById("overlayBody").textContent =
+        `击杀 ${state.kills} 只 · 金币 ${state.gold} · 剩余生命 ${Math.ceil(state.player.hp)}`;
+      overlay.classList.add("open");
+    }
+
+    function resetRound() {
+      overlay.classList.remove("open");
+      state.player.x = WORLD.w / 2;
+      state.player.y = WORLD.h / 2;
+      state.camera.x = state.player.x;
+      state.camera.y = state.player.y;
+      state.velocity.x = 0;
+      state.velocity.y = 0;
+      state.player.hp = state.player.maxHp;
+      state.gold = 0;
+      state.kills = 0;
+      state.timeLeft = ROUND.duration;
+      state.spawned = 0;
+      state.spawnTimer = 0;
+      state.monsters = [];
+      state.orbs = [];
+      state.orbAngle = 0;
+      state.lureUntil = 0;
+      state.captureBonus = 1;
+      state.heroFlipX = false;
+      goldEl.textContent = "0";
+      killsEl.textContent = "0";
+      timerEl.textContent = String(ROUND.duration);
+      hpFill.style.width = "100%";
+      running = true;
+    }
+
+    function updateHud() {
+      hpFill.style.width = `${(state.player.hp / state.player.maxHp) * 100}%`;
+      timerEl.textContent = Math.ceil(state.timeLeft).toString();
+      goldEl.textContent = state.gold;
+      killsEl.textContent = state.kills;
+    }
+
+    function update(dt) {
+      if (!running || paused) return;
+
+      state.timeLeft -= dt;
+      if (state.timeLeft <= 0) {
+        state.timeLeft = 0;
+        endRound();
+        return;
+      }
+
+      const spawnInterval = ROUND.duration / ROUND.spawnTotal;
+      if (!state.spawnTimer) state.spawnTimer = 0;
+      state.spawnTimer += dt;
+      while (state.spawnTimer >= spawnInterval && state.spawned < ROUND.spawnTotal) {
+        if (state.monsters.length >= TUNING.maxOnScreen) break;
+        state.spawnTimer -= spawnInterval;
+        spawnSlime();
+      }
+
+      const mv = Math.hypot(joy.vx, joy.vy);
+      const targetWorld = TUNING.movePx / zoom;
+      const tx = mv > 0.01 ? joy.vx * targetWorld : 0;
+      const ty = mv > 0.01 ? joy.vy * targetWorld : 0;
+      const rate = mv > 0.01 ? TUNING.accel : TUNING.decel;
+      const k = Math.min(1, rate * dt);
+      state.velocity.x += (tx - state.velocity.x) * k;
+      state.velocity.y += (ty - state.velocity.y) * k;
+      state.player.x += state.velocity.x * dt;
+      state.player.y += state.velocity.y * dt;
+
+      const actualPx = Math.hypot(state.velocity.x, state.velocity.y) * zoom;
+      const animMul = Math.max(0.12, Math.min(1.15, actualPx / (TUNING.movePx * 0.8)));
+
+      if (actualPx > 2) {
+        const face = pickAnim(state.velocity.x, state.velocity.y);
+        heroAnim.anim = face.anim;
+        if (Math.abs(state.velocity.x) >= Math.abs(state.velocity.y)) state.heroFlipX = face.flipX;
+        heroAnim.update(dt, animMul);
+      } else {
+        heroAnim.update(dt * 0.2, 0.35);
+      }
+
+      state.player.x = Math.max(40, Math.min(WORLD.w - 40, state.player.x));
+      state.player.y = Math.max(40, Math.min(WORLD.h - 40, state.player.y));
+
+      const camK = 1 - Math.exp(-TUNING.camLerp * dt);
+      state.camera.x += (state.player.x - state.camera.x) * camK;
+      state.camera.y += (state.player.y - state.camera.y) * camK;
+
+      state.orbAngle += dt * TUNING.orbRadPerSec;
+      state.orbs = [];
+      for (let i = 0; i < TUNING.orbCount; i++) {
+        const a = state.orbAngle + (i / TUNING.orbCount) * Math.PI * 2;
+        state.orbs.push({
+          x: state.player.x + Math.cos(a) * TUNING.orbRadius,
+          y: state.player.y + Math.sin(a) * TUNING.orbRadius,
+        });
+      }
+
+      const hitR = TUNING.tile * 0.55;
+      const dmgPerSec = 28;
+
+      for (const m of state.monsters) {
+        const dx = state.player.x - m.x;
+        const dy = state.player.y - m.y;
+        const len = Math.hypot(dx, dy) || 1;
+        m.x += (dx / len) * m.speed * dt;
+        m.y += (dy / len) * m.speed * dt;
+        if (m.hitFlash > 0) m.hitFlash -= dt;
+
+        for (const o of state.orbs) {
+          if (Math.hypot(o.x - m.x, o.y - m.y) < hitR) {
+            m.hp -= dmgPerSec * dt;
+            m.hitFlash = 0.06;
+          }
+        }
+
+        if (Math.hypot(m.x - state.player.x, m.y - state.player.y) < TUNING.tile * 0.45) {
+          state.player.hp -= TUNING.contactDps * dt;
+        }
+      }
+
+      state.monsters = state.monsters.filter(m => {
+        if (m.hp > 0) return true;
+        onMonsterKill(m);
+        return false;
+      });
+
+      if (state.player.hp <= 0) {
+        state.player.hp = 0;
+        endRound();
+      }
+
+      updateHud();
+    }
+
+    function draw() {
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, viewW, viewH);
+
+      drawTilemap();
+
+      const slimeScale = spriteScale(slimeAnim.frameRect.h, TUNING.slimePx);
+      const heroScale = spriteScale(heroAnim.frameRect.h, TUNING.heroPx);
+      const layers = [];
+
+      for (const m of state.monsters) {
+        const s = worldToScreen(m.x, m.y);
+        if (s.x < -80 || s.x > viewW + 80 || s.y < -80 || s.y > viewH + 80) continue;
+        layers.push({
+          y: m.y,
+          draw: () => {
+            if (m.hitFlash > 0) ctx.globalAlpha = 0.7;
+            slimeAnim.drawAt(ctx, s.x, s.y, slimeScale);
+            ctx.globalAlpha = 1;
+          },
+        });
+      }
+
+      const ps = worldToScreen(state.player.x, state.player.y);
+      layers.push({
+        y: state.player.y,
+        draw: () => heroAnim.drawAt(ctx, ps.x, ps.y, heroScale, state.heroFlipX),
+      });
+      layers.sort((a, b) => a.y - b.y);
+      layers.forEach(l => l.draw());
+
+      for (const o of state.orbs) {
+        const s = worldToScreen(o.x, o.y);
+        const r = TUNING.orbPx;
+        const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, r);
+        g.addColorStop(0, "rgba(255, 235, 210, 0.95)");
+        g.addColorStop(0.6, "rgba(232, 165, 152, 0.55)");
+        g.addColorStop(1, "rgba(232, 165, 152, 0)");
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.fillStyle = "rgba(250, 243, 235, 0.05)";
+      ctx.fillRect(0, 0, viewW, viewH);
+
+      if (state.lureUntil > performance.now()) {
+        ctx.strokeStyle = "rgba(212, 132, 122, 0.35)";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(ps.x, ps.y, TUNING.tile * 2.2 * zoom, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+
+    let lastTs = 0;
+    function loop(ts) {
+      if (!lastTs) { lastTs = ts; requestAnimationFrame(loop); return; }
+      const dt = Math.min((ts - lastTs) / 1000, 0.033);
+      lastTs = ts;
+      if (heroAnim && slimeAnim) {
+        slimeAnim.update(dt);
+        update(dt);
+        draw();
+      }
+      requestAnimationFrame(loop);
+    }
+
+    function setJoyStick(px, py) {
+      let dx = px - joy.cx;
+      let dy = py - joy.cy;
+      const len = Math.hypot(dx, dy);
+      const clamp = Math.min(len, JOY_MAX_R);
+      const nx = len === 0 ? 0 : (dx / len) * clamp;
+      const ny = len === 0 ? 0 : (dy / len) * clamp;
+      joyStick.style.transform = `translate(${nx}px, ${ny}px)`;
+
+      const mag = clamp / JOY_MAX_R;
+      if (mag < JOY_DEADZONE) {
+        joy.vx = 0;
+        joy.vy = 0;
+        return;
+      }
+      const live = 1 - JOY_DEADZONE;
+      const scaled = (mag - JOY_DEADZONE) / live;
+      const dirx = len === 0 ? 0 : dx / len;
+      const diry = len === 0 ? 0 : dy / len;
+      let vx = dirx * scaled;
+      let vy = diry * scaled;
+      const vlen = Math.hypot(vx, vy);
+      if (vlen > 1) { vx /= vlen; vy /= vlen; }
+      joy.vx = vx;
+      joy.vy = vy;
+    }
+
+    function resetJoy() {
+      joy.active = false;
+      joy.id = null;
+      joy.vx = 0;
+      joy.vy = 0;
+      joyStick.style.transform = "translate(0, 0)";
+    }
+
+    function bindJoystick() {
+      const start = (e) => {
+        if (joy.active) return;
+        const t = e.touches ? e.touches[0] : e;
+        joy.active = true;
+        joy.id = t.identifier ?? "mouse";
+        const r = joystickEl.getBoundingClientRect();
+        joy.cx = r.left + r.width / 2;
+        joy.cy = r.top + r.height / 2;
+        setJoyStick(t.clientX, t.clientY);
+        e.preventDefault();
+      };
+      const move = (e) => {
+        if (!joy.active) return;
+        const list = e.touches || [e];
+        for (const t of list) {
+          if ((t.identifier ?? "mouse") === joy.id) {
+            setJoyStick(t.clientX, t.clientY);
+            e.preventDefault();
+            break;
+          }
+        }
+      };
+      const end = (e) => {
+        const list = e.changedTouches || [e];
+        for (const t of list) {
+          if ((t.identifier ?? "mouse") === joy.id) resetJoy();
+        }
+      };
+
+      joystickEl.addEventListener("touchstart", start, { passive: false });
+      window.addEventListener("touchmove", move, { passive: false });
+      window.addEventListener("touchend", end);
+      window.addEventListener("touchcancel", end);
+      joystickEl.addEventListener("mousedown", start);
+      window.addEventListener("mousemove", (e) => { if (joy.active && joy.id === "mouse") setJoyStick(e.clientX, e.clientY); });
+      window.addEventListener("mouseup", end);
+    }
+
+    document.getElementById("btnSkill").addEventListener("click", () => {
+      if (!running) return;
+      state.lureUntil = performance.now() + 3000;
+      state.captureBonus = 2;
+      document.getElementById("btnSkill").classList.add("on");
+      showToast("诱捕标记 · 捕获判定 ×2");
+      setTimeout(() => {
+        state.captureBonus = 1;
+        document.getElementById("btnSkill").classList.remove("on");
+      }, 3000);
+    });
+
+    document.getElementById("btnAgain").addEventListener("click", resetRound);
+    document.getElementById("btnHome").addEventListener("click", () => {
+      window.location.href = "main-screen.html";
+    });
+
+    async function loadManifest(url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("无法加载 " + url);
+      return res.json();
+    }
+    function loadImage(url) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = () => reject(new Error("无法加载图片 " + url));
+        img.src = url;
+      });
+    }
+
+    window.addEventListener("resize", resize);
+    window.addEventListener("orientationchange", () => setTimeout(resize, 100));
+
+    bindJoystick();
+
+    (async () => {
+      try {
+        const [heroManifest, slimeManifest, hImg, sImg] = await Promise.all([
+          loadManifest(ASSETS.hero.manifest),
+          loadManifest(ASSETS.slime.manifest),
+          loadImage(ASSETS.hero.sheet),
+          loadImage(ASSETS.slime.sheet),
+        ]);
+        heroAnim = new SpriteAnimator(heroManifest, hImg);
+        slimeAnim = new SpriteAnimator(slimeManifest, sImg);
+        slimeAnim.anim = "idle";
+        heroImg = hImg;
+        slimeImg = sImg;
+        loadMsg.remove();
+        resize();
+        resetRound();
+        requestAnimationFrame(loop);
+      } catch (err) {
+        loadMsg.textContent = err.message + " — 请用本地静态服务打开（python -m http.server）";
+        console.error(err);
+      }
+    })();
+  </script>
+</body>
+</html>

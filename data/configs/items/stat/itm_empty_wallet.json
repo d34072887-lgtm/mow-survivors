@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "id": "itm_empty_wallet",
+  "name": "空钱包",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 21,
+  "tags": [
+    "gamble"
+  ],
+  "conditional": {
+    "condition": {
+      "type": "wealth_lte",
+      "value": 20
+    },
+    "modifiers": [
+      {
+        "statId": "luck",
+        "type": "flat",
+        "value": 6
+      }
+    ]
+  }
+}

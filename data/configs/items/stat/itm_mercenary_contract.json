@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "itm_mercenary_contract",
+  "name": "佣兵合同",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 23,
+  "archetypeBridge": {
+    "targetArchetype": "dps",
+    "outsiderOnly": true,
+    "perStack": [
+      {
+        "statId": "attack",
+        "type": "percent",
+        "value": 0.06
+      }
+    ]
+  }
+}

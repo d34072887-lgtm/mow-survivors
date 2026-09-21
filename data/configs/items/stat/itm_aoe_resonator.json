@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "itm_aoe_resonator",
+  "name": "地脉共鸣石",
+  "tier": "common",
+  "itemCategory": "stat",
+  "sellPrice": 9,
+  "tags": [
+    "aoe"
+  ],
+  "perStack": [
+    {
+      "statId": "aoeScale",
+      "type": "percent",
+      "value": 0.04
+    }
+  ]
+}

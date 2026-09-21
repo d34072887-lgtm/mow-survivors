@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "id": "itm_chaos_orb",
+  "name": "混沌宝珠",
+  "tier": "legendary",
+  "itemCategory": "curse",
+  "sellPrice": 48,
+  "tags": [
+    "gamble"
+  ],
+  "perStack": [
+    {
+      "statId": "luck",
+      "type": "flat",
+      "value": 5
+    },
+    {
+      "statId": "wealth",
+      "type": "flat",
+      "value": 5
+    }
+  ],
+  "gambleSideEffect": {
+    "enhanceBreakRisk": 0.03
+  }
+}

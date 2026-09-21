@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "id": "itm_lucky_charm",
+  "name": "幸运挂坠",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "tags": ["gamble"],
+  "perStack": [{ "statId": "luck", "type": "flat", "value": 2 }],
+  "sellPrice": 15
+}

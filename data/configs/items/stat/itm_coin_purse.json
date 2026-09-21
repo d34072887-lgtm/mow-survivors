@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "id": "itm_coin_purse",
+  "name": "钱袋",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "tags": ["gamble"],
+  "perStack": [{ "statId": "wealth", "type": "flat", "value": 2 }],
+  "sellPrice": 15
+}

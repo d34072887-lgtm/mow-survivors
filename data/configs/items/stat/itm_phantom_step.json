@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "itm_phantom_step",
+  "name": "幻影步",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 24,
+  "conditional": {
+    "condition": {
+      "type": "dodge_gte",
+      "value": 0.15
+    },
+    "modifiers": [
+      {
+        "statId": "moveSpeed",
+        "type": "percent",
+        "value": 0.1
+      }
+    ]
+  }
+}

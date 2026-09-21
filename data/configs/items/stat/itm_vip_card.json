@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "id": "itm_vip_card",
+  "name": "VIP 赌卡",
+  "tier": "rare",
+  "itemCategory": "venue",
+  "tags": ["gamble"],
+  "perStack": [{ "statId": "casinoEnforcerDelay", "type": "percent", "value": 0.08 }],
+  "sellPrice": 25
+}

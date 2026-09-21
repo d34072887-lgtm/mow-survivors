@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "_comment": "同 tag 道具对武器攻速/伤害加成 soft cap，见 docs/24-道具设计.md §4",
+  "caps": {
+    "burst": { "attackSpeed": 0.80 },
+    "melee": { "attackSpeed": 0.50 },
+    "ranged": { "range": 0.60 },
+    "orbit": { "attackSpeed": 0.40 }
+  }
+}

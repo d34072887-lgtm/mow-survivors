@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "id": "itm_auction_throne",
+  "name": "拍卖王座",
+  "tier": "legendary",
+  "itemCategory": "venue",
+  "sellPrice": 58,
+  "tags": [
+    "gamble"
+  ],
+  "conditional": {
+    "condition": {
+      "type": "wealth_gte",
+      "value": 150
+    },
+    "modifiers": [
+      {
+        "statId": "auctionSnatchRate",
+        "type": "percent",
+        "value": -0.08
+      },
+      {
+        "statId": "goldGain",
+        "type": "percent",
+        "value": 0.15
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "id": "itm_enchanter_sigil",
+  "name": "附魔印",
+  "tier": "legendary",
+  "itemCategory": "stat",
+  "conditional": {
+    "condition": { "type": "affix_count_gte", "value": 6 },
+    "modifiers": [{ "statId": "luck", "type": "flat", "value": 4 }],
+    "perStackBonus": [{ "statId": "luck", "type": "flat", "value": 1 }]
+  },
+  "sellPrice": 46
+}

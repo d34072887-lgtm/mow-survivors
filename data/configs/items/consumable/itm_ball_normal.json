@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "itm_ball_normal",
+  "name": "普通球",
+  "tier": "common",
+  "itemCategory": "consumable",
+  "consumableEffect": "capture_normal",
+  "sellPrice": 5
+}

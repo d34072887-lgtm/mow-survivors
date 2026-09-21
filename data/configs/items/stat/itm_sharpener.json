@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "itm_sharpener",
+  "name": "卷笔刀刃",
+  "tier": "common",
+  "itemCategory": "stat",
+  "sellPrice": 7,
+  "perStack": [
+    {
+      "statId": "attack",
+      "type": "flat",
+      "value": 2
+    }
+  ]
+}

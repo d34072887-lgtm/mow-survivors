@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "id": "itm_iron_meal",
+  "name": "铁餐盘",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "tags": ["tank"],
+  "perStack": [{ "statId": "maxHp", "type": "percent", "value": 0.04 }],
+  "sellPrice": 12
+}

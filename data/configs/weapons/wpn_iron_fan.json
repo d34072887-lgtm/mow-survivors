@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "id": "wpn_iron_fan",
+  "name": "铁扇飞轮",
+  "attackPattern": "orbit",
+  "tags": ["orbit"],
+  "qualityTiers": {
+    "white": {
+      "baseStats": [
+        { "statId": "attack", "type": "flat", "value": 4 },
+        { "statId": "attackSpeed", "type": "percent", "value": 0.05 }
+      ],
+      "shopWeight": 80
+    }
+  },
+  "flavor": "周身防御型输出"
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "id": "itm_beast_pact",
+  "name": "兽王之契",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "tags": ["build_capture"],
+  "perStack": [{ "statId": "luck", "type": "flat", "value": 2 }],
+  "archetypeFit": { "heroArchetype": "capture", "perStackMultiplier": 2 },
+  "sellPrice": 16
+}

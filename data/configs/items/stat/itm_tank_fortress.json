@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "id": "itm_tank_fortress",
+  "name": "移动堡垒",
+  "tier": "legendary",
+  "itemCategory": "stat",
+  "sellPrice": 60,
+  "tags": [
+    "tank"
+  ],
+  "conditional": {
+    "condition": {
+      "type": "all",
+      "rules": [
+        {
+          "type": "hp_max_gte",
+          "value": 1200
+        },
+        {
+          "type": "armor_gte",
+          "value": 40
+        }
+      ]
+    },
+    "modifiers": [
+      {
+        "statId": "damageReduction",
+        "type": "percent",
+        "value": 0.12
+      }
+    ]
+  }
+}

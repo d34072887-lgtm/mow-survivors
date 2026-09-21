@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "itm_crit_whetstone",
+  "name": "暴击磨刀石",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 15,
+  "perStack": [
+    {
+      "statId": "critRate",
+      "type": "percent",
+      "value": 0.02
+    },
+    {
+      "statId": "critDamage",
+      "type": "percent",
+      "value": 0.04
+    }
+  ]
+}

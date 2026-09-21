@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "itm_broken_mirror",
+  "name": "碎镜碎片",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 12,
+  "perStack": [
+    {
+      "statId": "luck",
+      "type": "flat",
+      "value": 1
+    },
+    {
+      "statId": "dodge",
+      "type": "percent",
+      "value": 0.01
+    }
+  ]
+}

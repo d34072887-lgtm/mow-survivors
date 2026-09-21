@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "id": "wpn_ground_stomp",
+  "name": "震地锤",
+  "attackPattern": "aoe_ground",
+  "tags": ["aoe", "melee"],
+  "qualityTiers": {
+    "white": {
+      "baseStats": [
+        { "statId": "attack", "type": "flat", "value": 10 },
+        { "statId": "range", "type": "percent", "value": 0.10 }
+      ],
+      "shopWeight": 75
+    }
+  },
+  "flavor": "慢速 AOE"
+}

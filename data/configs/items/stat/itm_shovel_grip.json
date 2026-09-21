@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "id": "itm_shovel_grip",
+  "name": "金柄铲握把",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 17,
+  "tags": [
+    "build_dig"
+  ],
+  "perStack": [
+    {
+      "statId": "wealth",
+      "type": "flat",
+      "value": 3
+    }
+  ],
+  "archetypeFit": {
+    "heroArchetype": "dig",
+    "perStackMultiplier": 1.5
+  }
+}

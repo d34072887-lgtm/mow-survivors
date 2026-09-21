@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "id": "itm_orbit_storm",
+  "name": "轨道风暴",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 26,
+  "tags": [
+    "orbit"
+  ],
+  "conditional": {
+    "condition": {
+      "type": "weapon_tag_count",
+      "tag": "orbit",
+      "value": 4
+    },
+    "modifiers": [
+      {
+        "statId": "aoeScale",
+        "type": "percent",
+        "value": 0.06
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "id": "itm_leech_tooth",
+  "name": "吸血牙",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "tags": ["sustain"],
+  "perStack": [{ "statId": "lifeSteal", "type": "percent", "value": 0.01 }],
+  "sellPrice": 14
+}

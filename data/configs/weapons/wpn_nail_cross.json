@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "id": "wpn_nail_cross",
+  "name": "钉刺十字弩",
+  "attackPattern": "ranged_pierce",
+  "tags": ["pierce"],
+  "qualityTiers": {
+    "white": {
+      "baseStats": [
+        { "statId": "attack", "type": "flat", "value": 6 },
+        { "statId": "pierce", "type": "flat", "value": 1 }
+      ],
+      "shopWeight": 85
+    }
+  },
+  "flavor": "直线割草"
+}

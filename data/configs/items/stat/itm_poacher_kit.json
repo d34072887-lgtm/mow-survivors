@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "id": "itm_poacher_kit",
+  "name": "偷猎者腰囊",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 18,
+  "archetypeBridge": {
+    "targetArchetype": "capture",
+    "outsiderOnly": true,
+    "perStack": [
+      {
+        "statId": "luck",
+        "type": "flat",
+        "value": 2
+      },
+      {
+        "statId": "petDamage",
+        "type": "percent",
+        "value": 0.04
+      }
+    ]
+  }
+}

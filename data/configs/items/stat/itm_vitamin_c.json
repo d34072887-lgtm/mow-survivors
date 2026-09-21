@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "itm_vitamin_c",
+  "name": "维C含片",
+  "tier": "common",
+  "itemCategory": "stat",
+  "sellPrice": 6,
+  "perStack": [
+    {
+      "statId": "maxHp",
+      "type": "percent",
+      "value": 0.02
+    }
+  ]
+}

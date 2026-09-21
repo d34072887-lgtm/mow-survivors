@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "itm_casino_charm",
+  "name": "赌场护身符",
+  "tier": "uncommon",
+  "itemCategory": "venue",
+  "sellPrice": 18,
+  "tags": [
+    "gamble"
+  ],
+  "perStack": [
+    {
+      "statId": "casinoWinRate",
+      "type": "percent",
+      "value": 0.04
+    }
+  ]
+}

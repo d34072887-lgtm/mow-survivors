@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "itm_pepper_shell",
+  "name": "胡椒弹壳",
+  "tier": "common",
+  "itemCategory": "stat",
+  "sellPrice": 8,
+  "tags": [
+    "burst"
+  ],
+  "perStack": [
+    {
+      "statId": "attackSpeed",
+      "type": "percent",
+      "value": 0.02
+    }
+  ]
+}

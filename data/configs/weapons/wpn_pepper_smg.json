@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "id": "wpn_pepper_smg",
+  "name": "胡椒冲锋枪",
+  "attackPattern": "ranged_burst",
+  "tags": ["burst"],
+  "qualityTiers": {
+    "white": {
+      "baseStats": [
+        { "statId": "attack", "type": "flat", "value": 5 },
+        { "statId": "attackSpeed", "type": "percent", "value": 0.08 }
+      ],
+      "shopWeight": 90
+    }
+  },
+  "flavor": "连射叠层核心"
+}

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "itm_crit_script",
+  "name": "暴击剧本",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 27,
+  "conditional": {
+    "condition": {
+      "type": "critRate_gte",
+      "value": 0.25
+    },
+    "modifiers": [
+      {
+        "statId": "critDamage",
+        "type": "percent",
+        "value": 0.12
+      }
+    ]
+  }
+}

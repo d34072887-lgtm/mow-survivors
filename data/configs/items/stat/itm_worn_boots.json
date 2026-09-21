@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "id": "itm_worn_boots",
+  "name": "磨穿布鞋",
+  "tier": "common",
+  "itemCategory": "stat",
+  "sellPrice": 7,
+  "perStack": [
+    {
+      "statId": "moveSpeed",
+      "type": "percent",
+      "value": 0.03
+    }
+  ]
+}

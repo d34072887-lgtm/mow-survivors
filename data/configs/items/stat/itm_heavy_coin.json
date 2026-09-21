@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "id": "itm_heavy_coin",
+  "name": "沉重硬币",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 11,
+  "tags": [
+    "gamble"
+  ],
+  "perStack": [
+    {
+      "statId": "wealth",
+      "type": "flat",
+      "value": 1
+    },
+    {
+      "statId": "moveSpeed",
+      "type": "percent",
+      "value": -0.01
+    }
+  ]
+}

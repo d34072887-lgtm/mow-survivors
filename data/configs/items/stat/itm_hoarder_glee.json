@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "itm_hoarder_glee",
+  "name": "囤囤乐",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 22,
+  "conditional": {
+    "condition": {
+      "type": "gold_gte",
+      "value": 800
+    },
+    "modifiers": [
+      {
+        "statId": "goldGain",
+        "type": "percent",
+        "value": 0.1
+      }
+    ]
+  }
+}

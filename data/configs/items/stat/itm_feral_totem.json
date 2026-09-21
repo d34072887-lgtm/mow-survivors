@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "id": "itm_feral_totem",
+  "name": "野性图腾",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 16,
+  "tags": [
+    "build_capture"
+  ],
+  "perStack": [
+    {
+      "statId": "petMergeBonus",
+      "type": "percent",
+      "value": 0.03
+    },
+    {
+      "statId": "luck",
+      "type": "flat",
+      "value": 1
+    }
+  ]
+}

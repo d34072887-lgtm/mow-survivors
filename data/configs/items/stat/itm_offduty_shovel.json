@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "id": "itm_offduty_shovel",
+  "name": "下班铁铲",
+  "tier": "rare",
+  "itemCategory": "venue",
+  "sellPrice": 20,
+  "archetypeBridge": {
+    "targetArchetype": "dig",
+    "outsiderOnly": true,
+    "perStack": [
+      {
+        "statId": "wealth",
+        "type": "flat",
+        "value": 2
+      }
+    ],
+    "conditional": {
+      "condition": {
+        "type": "venue_active",
+        "venue": "treasure"
+      },
+      "modifiers": [
+        {
+          "statId": "shopDiscount",
+          "type": "percent",
+          "value": 0.05
+        }
+      ]
+    }
+  }
+}

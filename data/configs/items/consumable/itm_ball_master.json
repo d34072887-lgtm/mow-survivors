@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "itm_ball_master",
+  "name": "大师球",
+  "tier": "legendary",
+  "itemCategory": "consumable",
+  "consumableEffect": "capture_master",
+  "sellPrice": 80
+}

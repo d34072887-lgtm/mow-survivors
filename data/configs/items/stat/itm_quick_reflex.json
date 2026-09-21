@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "itm_quick_reflex",
+  "name": "反射神经片",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 12,
+  "perStack": [
+    {
+      "statId": "dodge",
+      "type": "percent",
+      "value": 0.02
+    },
+    {
+      "statId": "pickupRange",
+      "type": "percent",
+      "value": 0.03
+    }
+  ]
+}

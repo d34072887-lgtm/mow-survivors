@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "itm_part_timer_ball",
+  "name": "兼职精灵球",
+  "tier": "uncommon",
+  "itemCategory": "stat",
+  "sellPrice": 14,
+  "archetypeBridge": {
+    "targetArchetype": "capture",
+    "outsiderOnly": true,
+    "perStack": [
+      {
+        "statId": "luck",
+        "type": "flat",
+        "value": 3
+      }
+    ]
+  },
+  "flavor": "非抓宠英雄叠层后，消耗球仍走 luck+attack 联动捕获"
+}

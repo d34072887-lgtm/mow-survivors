@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "id": "itm_iron_lungs",
+  "name": "铁肺囊",
+  "tier": "rare",
+  "itemCategory": "stat",
+  "sellPrice": 23,
+  "tags": [
+    "tank"
+  ],
+  "conditional": {
+    "condition": {
+      "type": "hp_max_gte",
+      "value": 600
+    },
+    "modifiers": [
+      {
+        "statId": "hpRegen",
+        "type": "flat",
+        "value": 8
+      }
+    ]
+  }
+}
