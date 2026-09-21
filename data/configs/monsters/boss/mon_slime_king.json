@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "id": "mon_slime_king",
+  "displayName": "史莱姆王",
+  "tier": "boss",
+  "sprite": "assets/monsters/slime",
+  "tint": {
+    "hue": -68,
+    "sat": 1.25,
+    "light": 0.03
+  },
+  "sizePx": 78,
+  "hp": 650,
+  "attack": 18,
+  "speedRatio": 0.4,
+  "gold": [
+    60,
+    60
+  ],
+  "captureBase": 0,
+  "emoji": "👑",
+  "boss": {
+    "summonEvery": 7,
+    "summonId": "mon_slime",
+    "summonCount": 3,
+    "dashEvery": 5,
+    "dashDuration": 0.9,
+    "dashSpeedMul": 3.2
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "id": "hero_xiaokui",
+  "displayName": "小葵",
+  "title": "驯兽师",
+  "sprite": "assets/characters/hero_xiaokui",
+  "_comment": "docs/20：攻击 58% / 生命 62% / 移速 90% / 幸运 115%（输出型基准 attack 10 · maxHp 120）",
+  "baseStats": {
+    "maxHp": 75,
+    "attack": 6,
+    "moveSpeed": -0.10,
+    "luck": 15,
+    "critRate": 0.05,
+    "critDamage": 0.5
+  },
+  "startingWeapons": ["wpn_iron_fan", "wpn_hunter_bow"],
+  "activeSkill": {
+    "id": "skill_lure_mark",
+    "name": "诱捕标记",
+    "cooldown": 12,
+    "duration": 3,
+    "radius": 130,
+    "captureMultiplier": 2,
+    "desc": "标记周围怪物 3 秒：被标记的怪被击杀时捕获概率 ×2"
+  },
+  "passive": { "id": "passive_bond_merge", "name": "羁绊合并", "desc": "抓到同种伙伴会合并成更强的一只（首版：局内计数）" },
+  "attributePoolId": "pool_xiaokui"
+}

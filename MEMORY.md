@@ -1,6 +1,6 @@
 # 割草游戏 — 项目索引手册
 
-> 最后更新：2026-06-26  
+> 最后更新：2026-09-21  
 > 代码目录：`E:\项目\割草游戏`（原 `E:\爽得不行`）  
 > 中控台文档：`D:\桌面\开发中控台\项目中控文档\割草游戏中控台文档\`
 
@@ -23,17 +23,30 @@
 
 ## 源码目录
 
-尚未创建 `src/`。可玩预览见 [docs/preview/](./docs/preview/)（2026-06-26：主界面 + 局内 demo）。规划见 [docs/18-配置与目录结构.md](./docs/18-配置与目录结构.md)。
+**`src/` 已创建（2026-09-21 首版可玩切片）**，入口 `index.html`，纯前端 ES modules、无构建：
+
+| 目录 | 内容 |
+|------|------|
+| `src/main.js` | 启动、屏幕切换、一局的事件接线（round:end → 4 选 1 → resume；run:end → 结算） |
+| `src/core/` | `loop` 主循环 · `rng` 可种子随机 · `events` EventBus · `assets` 加载 + 精灵烘焙（大图缩一次成小像素画布）· `input` 浮动摇杆/键盘 |
+| `src/systems/` | `stats` StatSystem（docs/02 公式）· `round` 回合表 · `pick` 4 选 1（docs/09） |
+| `src/game/` | `battle` 一局状态机 · `player` · `monsters`（池 + 追踪 + 分离 + Boss）· `spawner` · `weapons`（melee_arc / ranged_burst / ranged_pierce / orbit / aoe_ground）· `pickups` 金币 · `fx` · `world` 相机 · `spatial` 网格哈希 |
+| `src/render/` | `renderer` 设备像素渲染、Y 排序 · `tiles` 程序化草地 |
+| `src/ui/` | `home` 主界面 · `hud` · `pick`（4 选 1 / 暂停 / 结算弹层）· `toast` |
+| `src/data/` | `tuning` 手感常量（改速度/尺寸只动这里）· `stats` 18 属性注册 · `patterns` 攻击模式参数 |
+| `data/configs/` | 新增 `heroes/hero_xiaokui.json`、`monsters/{normal,elite,boss}/*.json`、`spawn-rules/rounds.json`、`attribute-pools/pool_xiaokui.json`、`attribute-pick/refresh-pricing.json`；武器仍读 `weapons/*.json` |
+
+`docs/preview/` 的单文件 demo 保留作参考，已被 `index.html` 取代。
 
 ### 本地预览
 
 ```bash
-cd E:\项目\割草游戏
+cd G:\项目\割草游戏
 python -m http.server 5501
 ```
 
-- 主界面：http://127.0.0.1:5501/docs/preview/main-screen.html
-- 局内：http://127.0.0.1:5501/docs/preview/battle-vertical.html
+- 游戏入口：http://localhost:5501/
+- 旧 demo：http://localhost:5501/docs/preview/main-screen.html 、 /docs/preview/battle-vertical.html
 
 ## 全局规则
 

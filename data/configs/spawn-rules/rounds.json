@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "_comment": "docs/05：R1≈15s/15 只，时长递增上限 60s；首版 5 回合，R5 为史莱姆王（打赢即结算）。hpMul/atkMul 按回合放大怪物面板。",
+  "durationCap": 60,
+  "restoreHpRatio": 0.25,
+  "rounds": [
+    { "round": 1, "duration": 15, "spawnTotal": 15, "maxOnScreen": 9,  "pool": [{ "id": "mon_slime", "weight": 10 }], "hpMul": 1.0, "atkMul": 1.0, "eliteChance": 0, "eliteMax": 0, "endGold": 6 },
+    { "round": 2, "duration": 20, "spawnTotal": 26, "maxOnScreen": 12, "pool": [{ "id": "mon_slime", "weight": 10 }, { "id": "mon_slime_pink", "weight": 5 }], "hpMul": 1.25, "atkMul": 1.1, "eliteChance": 0, "eliteMax": 0, "endGold": 9 },
+    { "round": 3, "duration": 25, "spawnTotal": 40, "maxOnScreen": 16, "pool": [{ "id": "mon_slime", "weight": 8 }, { "id": "mon_slime_pink", "weight": 6 }, { "id": "mon_slime_blue", "weight": 4 }], "hpMul": 1.6, "atkMul": 1.2, "eliteChance": 0.05, "eliteMax": 1, "eliteId": "mon_slime_big", "endGold": 13 },
+    { "round": 4, "duration": 30, "spawnTotal": 56, "maxOnScreen": 20, "pool": [{ "id": "mon_slime", "weight": 7 }, { "id": "mon_slime_pink", "weight": 7 }, { "id": "mon_slime_blue", "weight": 6 }], "hpMul": 2.1, "atkMul": 1.35, "eliteChance": 0.07, "eliteMax": 2, "eliteId": "mon_slime_big", "endGold": 18 },
+    { "round": 5, "duration": 0, "boss": "mon_slime_king", "spawnTotal": 0, "trickleEvery": 2.4, "maxOnScreen": 14, "pool": [{ "id": "mon_slime", "weight": 8 }, { "id": "mon_slime_pink", "weight": 6 }, { "id": "mon_slime_blue", "weight": 4 }], "hpMul": 2.4, "atkMul": 1.5, "eliteChance": 0, "eliteMax": 0, "endGold": 30, "final": true }
+  ]
+}

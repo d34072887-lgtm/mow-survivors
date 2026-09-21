@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "mon_slime",
+  "displayName": "史莱姆",
+  "tier": "normal",
+  "sprite": "assets/monsters/slime",
+  "tint": null,
+  "sizePx": 17,
+  "hp": 18,
+  "attack": 5,
+  "speedRatio": 0.68,
+  "gold": [
+    2,
+    3
+  ],
+  "captureBase": 0.1,
+  "emoji": "🟢"
+}

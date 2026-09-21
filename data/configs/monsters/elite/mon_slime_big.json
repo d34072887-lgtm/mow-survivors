@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "id": "mon_slime_big",
+  "displayName": "大史莱姆",
+  "tier": "elite",
+  "sprite": "assets/monsters/slime",
+  "tint": {
+    "hue": -18,
+    "sat": 1.15,
+    "light": -0.02
+  },
+  "sizePx": 30,
+  "hp": 200,
+  "attack": 12,
+  "speedRatio": 0.5,
+  "gold": [
+    12,
+    16
+  ],
+  "captureBase": 0.05,
+  "emoji": "🟩"
+}

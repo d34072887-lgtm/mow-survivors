@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "id": "mon_slime_pink",
+  "displayName": "粉史莱姆",
+  "tier": "normal",
+  "sprite": "assets/monsters/slime",
+  "tint": {
+    "hue": 230,
+    "sat": 0.95,
+    "light": 0.06
+  },
+  "sizePx": 15,
+  "hp": 12,
+  "attack": 5,
+  "speedRatio": 0.95,
+  "gold": [
+    2,
+    3
+  ],
+  "captureBase": 0.1,
+  "emoji": "🩷"
+}

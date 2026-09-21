@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "_comment": "docs/09：同回合内每刷一次加价，下一回合重置；attributeRefreshDiscount 可打折",
+  "base": 5,
+  "step": 5,
+  "max": 45
+}

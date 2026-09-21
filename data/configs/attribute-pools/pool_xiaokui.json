@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "id": "pool_xiaokui",
+  "_comment": "docs/09 + docs/25 §9：普通/稀有/传说同池竞争；luck 抬稀有/传说权重（软饱和）；武器卡来自 weapons/*.json",
+  "tierWeights": { "common": 68, "rare": 25, "legend": 7 },
+  "weaponCardWeight": 26,
+  "options": [
+    { "id": "opt_hp",      "tier": "common", "statId": "maxHp",        "type": "flat",    "value": 20,   "weight": 10 },
+    { "id": "opt_atk",     "tier": "common", "statId": "attack",       "type": "flat",    "value": 3,    "weight": 10 },
+    { "id": "opt_atkp",    "tier": "common", "statId": "attack",       "type": "percent", "value": 0.12, "weight": 8 },
+    { "id": "opt_armor",   "tier": "common", "statId": "armor",        "type": "flat",    "value": 6,    "weight": 7 },
+    { "id": "opt_aspd",    "tier": "common", "statId": "attackSpeed",  "type": "flat",    "value": 0.12, "weight": 9 },
+    { "id": "opt_crit",    "tier": "common", "statId": "critRate",     "type": "flat",    "value": 0.06, "weight": 7 },
+    { "id": "opt_critd",   "tier": "common", "statId": "critDamage",   "type": "flat",    "value": 0.30, "weight": 6 },
+    { "id": "opt_spd",     "tier": "common", "statId": "moveSpeed",    "type": "flat",    "value": 0.08, "weight": 8 },
+    { "id": "opt_luck",    "tier": "common", "statId": "luck",         "type": "flat",    "value": 6,    "weight": 8 },
+    { "id": "opt_wealth",  "tier": "common", "statId": "wealth",       "type": "flat",    "value": 6,    "weight": 6 },
+    { "id": "opt_ls",      "tier": "rare",   "statId": "lifeSteal",    "type": "flat",    "value": 0.04, "weight": 6 },
+    { "id": "opt_regen",   "tier": "rare",   "statId": "hpRegen",      "type": "flat",    "value": 1.2,  "weight": 6 },
+    { "id": "opt_dodge",   "tier": "rare",   "statId": "dodge",        "type": "flat",    "value": 0.06, "weight": 5 },
+    { "id": "opt_range",   "tier": "rare",   "statId": "range",        "type": "flat",    "value": 0.15, "weight": 6 },
+    { "id": "opt_pierce",  "tier": "rare",   "statId": "pierce",       "type": "flat",    "value": 1,    "weight": 5 },
+    { "id": "opt_aoe",     "tier": "rare",   "statId": "aoeScale",     "type": "flat",    "value": 0.18, "weight": 5 },
+    { "id": "opt_gold",    "tier": "rare",   "statId": "goldGain",     "type": "flat",    "value": 0.20, "weight": 6 },
+    { "id": "opt_pick",    "tier": "rare",   "statId": "pickupRange",  "type": "flat",    "value": 0.40, "weight": 4 },
+    { "id": "opt_l_atk",   "tier": "legend", "statId": "attack",       "type": "percent", "value": 0.35, "weight": 5 },
+    { "id": "opt_l_hp",    "tier": "legend", "statId": "maxHp",        "type": "flat",    "value": 60,   "weight": 5 },
+    { "id": "opt_l_armor", "tier": "legend", "statId": "armor",        "type": "flat",    "value": 18,   "weight": 3 },
+    { "id": "opt_l_luck",  "tier": "legend", "statId": "luck",         "type": "flat",    "value": 20,   "weight": 4 },
+    { "id": "opt_l_wealth","tier": "legend", "statId": "wealth",       "type": "flat",    "value": 20,   "weight": 3 }
+  ]
+}
